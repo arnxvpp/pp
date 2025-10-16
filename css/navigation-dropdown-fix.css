@@ -1,0 +1,123 @@
+/**
+ * Navigation Dropdown Fix CSS
+ * Ensures dropdown menus display properly with animations
+ */
+
+/* Base state - all submenus hidden by default */
+.global-nav ul ul {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    min-width: 200px;
+    background-color: rgba(0, 0, 0, 0.98);
+    z-index: 1000;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+/* Active/visible submenu state */
+.global-nav ul ul.select,
+.global-nav ul ul.fadeInUp {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Animation classes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOutUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
+.fadeInUp {
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+.fadeOutUp {
+    animation: fadeOutUp 0.4s ease forwards;
+}
+
+/* Parent link when submenu is active */
+.global-nav a.active {
+    color: var(--color-brand-red, #BC1F2F);
+    font-weight: 600;
+}
+
+/* Ensure parent items with submenus are clickable */
+.global-nav > ul > li > a[href="javascript:void(0);"] {
+    cursor: pointer;
+}
+
+/* Nested submenu positioning */
+.global-nav ul ul ul {
+    left: 100%;
+    top: 0;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .global-nav ul ul {
+        position: static;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        padding-left: 20px;
+    }
+
+    .global-nav ul ul ul {
+        padding-left: 40px;
+    }
+}
+
+/* Hover state for desktop */
+@media (min-width: 769px) {
+    .global-nav > ul > li:hover > ul {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Fix for overlay navigation */
+.nav-overlay .global-nav ul ul {
+    position: static;
+    width: 100%;
+    background-color: transparent;
+}
+
+.nav-overlay .global-nav ul ul.select {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Ensure submenu links are visible */
+.global-nav ul ul a {
+    display: block;
+    padding: 10px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.global-nav ul ul a:hover {
+    background-color: rgba(188, 31, 47, 0.2);
+}
