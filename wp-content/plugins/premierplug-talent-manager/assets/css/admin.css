@@ -1,0 +1,93 @@
+/**
+ * PremierPlug Talent Manager - Admin Styles
+ */
+
+/* Analytics Dashboard */
+.pptm-analytics-dashboard {
+    padding: 20px 0;
+}
+
+.pptm-stat-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.pptm-stat-card {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.pptm-stat-card h3 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #BC1F2F;
+    margin: 0 0 10px;
+}
+
+.pptm-stat-card p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Portfolio Meta Box */
+.pptm-portfolio-item {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.pptm-portfolio-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.pptm-portfolio-item-header h4 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.pptm-remove-portfolio-item {
+    color: #a00;
+}
+
+.pptm-remove-portfolio-item:hover {
+    color: #dc3232;
+}
+
+#pptm-add-portfolio-item {
+    margin-top: 15px;
+}
+
+/* Admin Column Icons */
+.column-thumbnail img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.column-featured .dashicons-star-filled {
+    font-size: 20px;
+}
+
+/* Settings Page */
+.wrap form table.form-table {
+    margin-top: 20px;
+}
+
+.wrap form table.form-table th {
+    width: 250px;
+}

@@ -1,0 +1,462 @@
+/**
+ * PremierPlug Talent Manager - Public Styles
+ * Matching existing PremierPlug design system
+ * Brand Color: #BC1F2F
+ */
+
+/* Talent Grid Layout */
+.pptm-talent-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* Talent Card */
+.pptm-talent-card {
+    background: #fff;
+    border-radius: 0;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.pptm-talent-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.talent-card-image {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.talent-card-image a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.talent-card-image .talent-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.pptm-talent-card:hover .talent-photo {
+    transform: scale(1.05);
+}
+
+.talent-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e0e0e0;
+}
+
+.talent-photo-placeholder .dashicons {
+    font-size: 80px;
+    color: #999;
+}
+
+.featured-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #BC1F2F;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    z-index: 2;
+}
+
+.talent-card-content {
+    padding: 25px;
+}
+
+.talent-segment-badge {
+    display: inline-block;
+    background: #BC1F2F;
+    color: #fff;
+    padding: 4px 12px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.talent-name {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 10px 0;
+    line-height: 1.2;
+}
+
+.talent-name a {
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.talent-name a:hover {
+    color: #BC1F2F;
+}
+
+.talent-headline {
+    font-size: 14px;
+    color: #666;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+.talent-excerpt {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #444;
+    margin: 15px 0;
+}
+
+.talent-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 13px;
+}
+
+.talent-experience {
+    color: #666;
+    font-weight: 500;
+}
+
+.talent-availability {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.talent-availability.available {
+    color: #46b450;
+}
+
+.talent-availability.available .status-indicator {
+    background: #46b450;
+}
+
+.talent-availability.booked {
+    color: #ffb900;
+}
+
+.talent-availability.booked .status-indicator {
+    background: #ffb900;
+}
+
+.talent-availability.unavailable {
+    color: #dc3232;
+}
+
+.talent-availability.unavailable .status-indicator {
+    background: #dc3232;
+}
+
+.btn-talent-view {
+    display: inline-block;
+    background: #BC1F2F;
+    color: #fff;
+    padding: 12px 24px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: background 0.3s ease;
+    width: 100%;
+}
+
+.btn-talent-view:hover {
+    background: #9a1825;
+}
+
+/* Filter Section */
+#pptm-filter-form {
+    max-width: 800px;
+}
+
+.filter-group {
+    margin-bottom: 25px;
+}
+
+.filter-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.filter-group input[type="text"],
+.filter-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 16px;
+}
+
+.filter-group input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.checkbox-label {
+    display: block;
+    color: #fff;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.filter-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 12px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Loading State */
+.pptm-loading {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.loading-spinner {
+    border: 3px solid rgba(188, 31, 47, 0.2);
+    border-top: 3px solid #BC1F2F;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Pagination */
+.pptm-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.pptm-pagination a,
+.pptm-pagination span {
+    padding: 10px 15px;
+    background: #f5f5f5;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.pptm-pagination a:hover,
+.pptm-pagination .current {
+    background: #BC1F2F;
+    color: #fff;
+}
+
+/* Single Talent Profile Styles */
+.talent-experience-block,
+.talent-skills-block,
+.talent-segments-block {
+    margin-bottom: 30px;
+}
+
+.experience-number {
+    font-size: 48px;
+    font-weight: 700;
+    color: #BC1F2F;
+    margin: 10px 0;
+}
+
+.skills-list,
+.segments-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.skill-badge,
+.segment-badge {
+    display: inline-block;
+    background: #f5f5f5;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.segment-badge {
+    background: #BC1F2F;
+    color: #fff;
+}
+
+/* Portfolio Grid */
+.pptm-portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-image-link {
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.portfolio-image-link:hover img {
+    transform: scale(1.1);
+}
+
+.portfolio-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: #fff;
+    padding: 20px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.portfolio-image-link:hover .portfolio-overlay {
+    transform: translateY(0);
+}
+
+.portfolio-video video,
+.portfolio-audio audio {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Inquiry Form */
+#pptm-inquiry-form .form-item {
+    margin-bottom: 20px;
+}
+
+#pptm-inquiry-response {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+#pptm-inquiry-response.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+#pptm-inquiry-response.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .pptm-talent-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .filter-actions {
+        flex-direction: column;
+    }
+
+    .filter-actions button {
+        width: 100%;
+    }
+
+    .pptm-portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .talent-card-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .pptm-talent-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pptm-portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* No Results */
+.no-talents-found {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    padding: 60px 20px;
+}
