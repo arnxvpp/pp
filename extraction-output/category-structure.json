@@ -1,0 +1,67 @@
+{
+  "Company Information": {
+    "name": "Company Information",
+    "slug": "company-information",
+    "description": "Company Information related content",
+    "parent": null,
+    "posts": [
+      "About Us",
+      "Career",
+      "Client Privacy Notice",
+      "Contact Us",
+      "Entry level opportunities",
+      "Human Rights",
+      "Internships",
+      "Privacy Policy",
+      "Social Responsibility",
+      "Term of Use"
+    ]
+  },
+  "Enterprise Solutions": {
+    "name": "Enterprise Solutions",
+    "slug": "enterprise-solutions",
+    "description": "Enterprise Solutions related content",
+    "parent": "For Enterprise",
+    "posts": [
+      "Brand Consulting",
+      "Brand Studio",
+      "Brand Management",
+      "Marketing & IT",
+      "Music Brand Partnerships",
+      "Publishing"
+    ]
+  },
+  "Research Services": {
+    "name": "Research Services",
+    "slug": "research-services",
+    "description": "Research Services related content",
+    "parent": "Research",
+    "posts": [
+      "Data Analysis",
+      "Market Research",
+      "Social Research"
+    ]
+  },
+  "Talent Services": {
+    "name": "Talent Services",
+    "slug": "talent-services",
+    "description": "Talent Services related content",
+    "parent": "For Talents",
+    "posts": [
+      "Digital Media",
+      "Television",
+      "Speakers",
+      "Television",
+      "Voiceovers"
+    ]
+  },
+  "Home": {
+    "name": "Home",
+    "slug": "home",
+    "description": "Home related content",
+    "parent": null,
+    "posts": [
+      ".Org - Modern Media Agency"
+    ]
+  }
+}

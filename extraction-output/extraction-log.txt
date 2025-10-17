@@ -1,0 +1,122 @@
+[2025-10-17T10:31:51.882Z] [INFO] Starting content extraction...
+[2025-10-17T10:31:51.886Z] [INFO] Found 25 HTML files
+[2025-10-17T10:31:51.886Z] [INFO] Parsing: about-us.html
+[2025-10-17T10:31:51.938Z] [INFO] Copied image: about-us.jpeg
+[2025-10-17T10:31:51.940Z] [INFO] Copied image: about-us.jpeg
+[2025-10-17T10:31:51.940Z] [INFO] Successfully parsed: about-us.html (189 words, 2 images)
+[2025-10-17T10:31:51.940Z] [INFO] Parsing: brand-consulting.html
+[2025-10-17T10:31:51.965Z] [INFO] Copied image: brand-consulting.jpeg
+[2025-10-17T10:31:51.966Z] [INFO] Copied image: brand-consulting.jpeg
+[2025-10-17T10:31:51.966Z] [INFO] Successfully parsed: brand-consulting.html (886 words, 2 images)
+[2025-10-17T10:31:51.966Z] [INFO] Parsing: brand-studio_2.html
+[2025-10-17T10:31:51.987Z] [INFO] Copied image: brand-studio.jpeg
+[2025-10-17T10:31:51.988Z] [INFO] Copied image: brand-studio.jpeg
+[2025-10-17T10:31:51.988Z] [INFO] Copied image: brand-studio-product1.jpeg
+[2025-10-17T10:31:51.989Z] [INFO] Copied image: brand-studio-product2.jpeg
+[2025-10-17T10:31:51.990Z] [INFO] Copied image: brand-studio-product3.jpeg
+[2025-10-17T10:31:51.991Z] [INFO] Copied image: brand-studio-product5.jpeg
+[2025-10-17T10:31:51.991Z] [INFO] Successfully parsed: brand-studio_2.html (304 words, 6 images)
+[2025-10-17T10:31:51.991Z] [INFO] Parsing: brandmanagement.html
+[2025-10-17T10:31:52.001Z] [INFO] Copied image: brand-management.jpeg
+[2025-10-17T10:31:52.002Z] [INFO] Copied image: brand-management.jpeg
+[2025-10-17T10:31:52.002Z] [INFO] Successfully parsed: brandmanagement.html (116 words, 2 images)
+[2025-10-17T10:31:52.002Z] [INFO] Parsing: careers.html
+[2025-10-17T10:31:52.017Z] [INFO] Copied image: career.jpeg
+[2025-10-17T10:31:52.018Z] [INFO] Copied image: career.jpeg
+[2025-10-17T10:31:52.018Z] [INFO] Successfully parsed: careers.html (233 words, 2 images)
+[2025-10-17T10:31:52.018Z] [INFO] Parsing: client-privacy-notice.html
+[2025-10-17T10:31:52.042Z] [INFO] Copied image: client-privacy-notice.jpeg
+[2025-10-17T10:31:52.042Z] [INFO] Copied image: client-privacy-notice.jpeg
+[2025-10-17T10:31:52.043Z] [INFO] Successfully parsed: client-privacy-notice.html (3491 words, 2 images)
+[2025-10-17T10:31:52.043Z] [INFO] Parsing: contact.html
+[2025-10-17T10:31:52.050Z] [INFO] Copied image: contact-us.jpeg
+[2025-10-17T10:31:52.051Z] [INFO] Copied image: contact-us.jpeg
+[2025-10-17T10:31:52.051Z] [INFO] Successfully parsed: contact.html (340 words, 2 images)
+[2025-10-17T10:31:52.051Z] [INFO] Parsing: data-analysis.html
+[2025-10-17T10:31:52.062Z] [INFO] Copied image: data-analysis.jpeg
+[2025-10-17T10:31:52.063Z] [INFO] Copied image: data-analysis.jpeg
+[2025-10-17T10:31:52.064Z] [INFO] Successfully parsed: data-analysis.html (449 words, 2 images)
+[2025-10-17T10:31:52.064Z] [INFO] Parsing: digital-media.html
+[2025-10-17T10:31:52.078Z] [WARNING] Warning: Very little content extracted from digital-media.html
+[2025-10-17T10:31:52.083Z] [INFO] Copied image: digital-media-roaster.jpeg
+[2025-10-17T10:31:52.084Z] [INFO] Copied image: digital-media-roaster.jpeg
+[2025-10-17T10:31:52.084Z] [INFO] Successfully parsed: digital-media.html (11 words, 2 images)
+[2025-10-17T10:31:52.084Z] [INFO] Parsing: entry-level-opportunities.html
+[2025-10-17T10:31:52.092Z] [INFO] Copied image: entry-level-opportunities.jpeg
+[2025-10-17T10:31:52.092Z] [INFO] Copied image: entry-level-opportunities.jpeg
+[2025-10-17T10:31:52.092Z] [INFO] Successfully parsed: entry-level-opportunities.html (137 words, 2 images)
+[2025-10-17T10:31:52.092Z] [INFO] Parsing: human-rights.html
+[2025-10-17T10:31:52.104Z] [INFO] Copied image: human-rights.jpeg
+[2025-10-17T10:31:52.105Z] [INFO] Copied image: human-rights.jpeg
+[2025-10-17T10:31:52.105Z] [WARNING] Warning: Image not found: ../sites/default/files/inline-images/Untitled design.png
+[2025-10-17T10:31:52.105Z] [WARNING] Warning: Image not found: ../sites/default/files/inline-images/Untitled design.png
+[2025-10-17T10:31:52.105Z] [INFO] Successfully parsed: human-rights.html (1535 words, 4 images)
+[2025-10-17T10:31:52.105Z] [INFO] Parsing: index.html
+[2025-10-17T10:31:52.107Z] [WARNING] Warning: Very little content extracted from index.html
+[2025-10-17T10:31:52.108Z] [INFO] Successfully parsed: index.html (11 words, 0 images)
+[2025-10-17T10:31:52.108Z] [INFO] Parsing: internships.html
+[2025-10-17T10:31:52.124Z] [INFO] Copied image: internship.jpeg
+[2025-10-17T10:31:52.125Z] [INFO] Copied image: internship.jpeg
+[2025-10-17T10:31:52.125Z] [INFO] Successfully parsed: internships.html (451 words, 2 images)
+[2025-10-17T10:31:52.125Z] [INFO] Parsing: market-research.html
+[2025-10-17T10:31:52.135Z] [INFO] Copied image: market-research.jpeg
+[2025-10-17T10:31:52.136Z] [INFO] Copied image: market-research.jpeg
+[2025-10-17T10:31:52.136Z] [INFO] Successfully parsed: market-research.html (424 words, 2 images)
+[2025-10-17T10:31:52.136Z] [INFO] Parsing: marketing-it.html
+[2025-10-17T10:31:52.147Z] [WARNING] Warning: Very little content extracted from marketing-it.html
+[2025-10-17T10:31:52.148Z] [INFO] Copied image: digital-media-roaster.jpeg
+[2025-10-17T10:31:52.149Z] [INFO] Copied image: digital-media-roaster.jpeg
+[2025-10-17T10:31:52.149Z] [INFO] Successfully parsed: marketing-it.html (11 words, 2 images)
+[2025-10-17T10:31:52.149Z] [INFO] Parsing: motion-pictures.html
+[2025-10-17T10:31:52.163Z] [INFO] Copied image: motion-picture.jpeg
+[2025-10-17T10:31:52.164Z] [INFO] Copied image: motion-picture.jpeg
+[2025-10-17T10:31:52.164Z] [INFO] Successfully parsed: motion-pictures.html (418 words, 2 images)
+[2025-10-17T10:31:52.164Z] [INFO] Parsing: music-brand-partnerships.html
+[2025-10-17T10:31:52.171Z] [INFO] Copied image: music-brand-partnership.jpeg
+[2025-10-17T10:31:52.172Z] [INFO] Copied image: music-brand-partnership.jpeg
+[2025-10-17T10:31:52.172Z] [WARNING] Warning: Image not found: sites/default/files/styles/square/public/2022-03/PromoPhoto081221_08202021062355_large_1.jpeg
+[2025-10-17T10:31:52.172Z] [WARNING] Warning: Image not found: sites/default/files/styles/square/public/2022-03/DojaCat_05072018064023_large_0.jpeg
+[2025-10-17T10:31:52.172Z] [WARNING] Warning: Image not found: sites/default/files/styles/widescreen_landscape/public/2022-03/Zac Brown Band Heashot_2.png
+[2025-10-17T10:31:52.172Z] [WARNING] Warning: Image not found: sites/default/files/styles/square/public/2022-03/DKO096704262021081520large_06212021094947_1.jpeg
+[2025-10-17T10:31:52.172Z] [INFO] Successfully parsed: music-brand-partnerships.html (96 words, 6 images)
+[2025-10-17T10:31:52.172Z] [INFO] Parsing: privacy-policy.html
+[2025-10-17T10:31:52.221Z] [INFO] Copied image: client-privacy-notice.jpeg
+[2025-10-17T10:31:52.223Z] [INFO] Copied image: client-privacy-notice.jpeg
+[2025-10-17T10:31:52.225Z] [INFO] Successfully parsed: privacy-policy.html (9136 words, 2 images)
+[2025-10-17T10:31:52.225Z] [INFO] Parsing: publishing.html
+[2025-10-17T10:31:52.238Z] [INFO] Copied image: publishing.jpeg
+[2025-10-17T10:31:52.239Z] [INFO] Copied image: publishing.jpeg
+[2025-10-17T10:31:52.239Z] [INFO] Successfully parsed: publishing.html (55 words, 2 images)
+[2025-10-17T10:31:52.239Z] [INFO] Parsing: social-research.html
+[2025-10-17T10:31:52.250Z] [INFO] Copied image: social-research.jpeg
+[2025-10-17T10:31:52.251Z] [INFO] Copied image: social-research.jpeg
+[2025-10-17T10:31:52.251Z] [INFO] Successfully parsed: social-research.html (415 words, 2 images)
+[2025-10-17T10:31:52.251Z] [INFO] Parsing: social-responsibility.html
+[2025-10-17T10:31:52.256Z] [INFO] Copied image: social-responsibility.jpeg
+[2025-10-17T10:31:52.256Z] [INFO] Copied image: social-responsibility.jpeg
+[2025-10-17T10:31:52.257Z] [INFO] Successfully parsed: social-responsibility.html (348 words, 2 images)
+[2025-10-17T10:31:52.257Z] [INFO] Parsing: speakers.html
+[2025-10-17T10:31:52.305Z] [INFO] Copied image: speakers.jpeg
+[2025-10-17T10:31:52.306Z] [INFO] Copied image: speakers.jpeg
+[2025-10-17T10:31:52.306Z] [INFO] Successfully parsed: speakers.html (1118 words, 2 images)
+[2025-10-17T10:31:52.306Z] [INFO] Parsing: television.html
+[2025-10-17T10:31:52.316Z] [INFO] Copied image: motion-picture.jpeg
+[2025-10-17T10:31:52.317Z] [INFO] Copied image: motion-picture.jpeg
+[2025-10-17T10:31:52.317Z] [INFO] Successfully parsed: television.html (417 words, 2 images)
+[2025-10-17T10:31:52.317Z] [INFO] Parsing: terms-of-use.html
+[2025-10-17T10:31:52.329Z] [INFO] Copied image: client-privacy-notice.jpeg
+[2025-10-17T10:31:52.330Z] [INFO] Copied image: client-privacy-notice.jpeg
+[2025-10-17T10:31:52.331Z] [INFO] Successfully parsed: terms-of-use.html (7797 words, 2 images)
+[2025-10-17T10:31:52.331Z] [INFO] Parsing: voiceovers.html
+[2025-10-17T10:31:52.341Z] [INFO] Copied image: voiceover.jpeg
+[2025-10-17T10:31:52.342Z] [INFO] Copied image: voiceover.jpeg
+[2025-10-17T10:31:52.342Z] [INFO] Successfully parsed: voiceovers.html (432 words, 2 images)
+[2025-10-17T10:31:52.342Z] [INFO] Generating WordPress SQL...
+[2025-10-17T10:31:52.351Z] [INFO] SQL file created: /tmp/cc-agent/58701983/project/extraction-output/premierplug-content-import.sql
+[2025-10-17T10:31:52.351Z] [INFO] Generating image mapping CSV...
+[2025-10-17T10:31:52.351Z] [INFO] Image mapping created: /tmp/cc-agent/58701983/project/extraction-output/image-mapping.csv
+[2025-10-17T10:31:52.351Z] [INFO] Generating category structure JSON...
+[2025-10-17T10:31:52.352Z] [INFO] Category structure created: /tmp/cc-agent/58701983/project/extraction-output/category-structure.json
+[2025-10-17T10:31:52.352Z] [INFO] Generating extraction report...
+[2025-10-17T10:31:52.352Z] [INFO] Report created: /tmp/cc-agent/58701983/project/extraction-output/content-extraction-report.md
+[2025-10-17T10:31:52.352Z] [INFO] Writing log file...
