@@ -54,12 +54,20 @@ add_action('after_setup_theme', 'premierplug_theme_setup');
  * Enqueue Styles
  */
 function premierplug_enqueue_styles() {
-    wp_enqueue_style('premierplug-style', get_stylesheet_uri(), array(), PREMIERPLUG_VERSION);
+    // Self-hosted fonts (replaces Typekit)
+    wp_enqueue_style(
+        'premierplug-fonts',
+        PREMIERPLUG_THEME_URI . '/assets/css/fonts.css',
+        array(),
+        PREMIERPLUG_VERSION
+    );
+
+    wp_enqueue_style('premierplug-style', get_stylesheet_uri(), array('premierplug-fonts'), PREMIERPLUG_VERSION);
 
     wp_enqueue_style(
         'premierplug-base',
         PREMIERPLUG_THEME_URI . '/assets/css/css_IY5cou33-Z4h9ItNyj7yrjAFHPSeHIWcP84YQeF024I.css',
-        array(),
+        array('premierplug-fonts'),
         PREMIERPLUG_VERSION
     );
 
@@ -94,21 +102,7 @@ function premierplug_enqueue_scripts() {
         true
     );
 
-    wp_enqueue_script(
-        'typekit',
-        'https://use.typekit.net/gce7xzt.js',
-        array(),
-        null,
-        false
-    );
-
-    wp_enqueue_script(
-        'premierplug-typekit-load',
-        PREMIERPLUG_THEME_URI . '/assets/js/js_g74xuDbN8b5rWKHEDaWhLXtJ9EN90wn9RqnSZViQfMQ.js',
-        array('typekit'),
-        PREMIERPLUG_VERSION,
-        false
-    );
+    // Typekit removed - using self-hosted fonts instead
 
     wp_enqueue_script(
         'premierplug-main',
@@ -208,3 +202,66 @@ function premierplug_customize_register($wp_customize) {
     ));
 }
 add_action('customize_register', 'premierplug_customize_register');
+
+/**
+ * Add lazy loading to images
+ */
+function premierplug_lazy_load_images($content) {
+    if (is_admin() || is_feed() || wp_is_mobile()) {
+        return $content;
+    }
+
+    $content = preg_replace(
+        '/<img(.*?)src=/i',
+        '<img$1loading="lazy" src=',
+        $content
+    );
+
+    return $content;
+}
+add_filter('the_content', 'premierplug_lazy_load_images', 99);
+add_filter('post_thumbnail_html', 'premierplug_lazy_load_images', 99);
+
+/**
+ * Remove query strings from static resources
+ */
+function premierplug_remove_query_strings($src) {
+    if (strpos($src, '?ver=')) {
+        $src = remove_query_arg('ver', $src);
+    }
+    return $src;
+}
+add_filter('style_loader_src', 'premierplug_remove_query_strings', 10, 2);
+add_filter('script_loader_src', 'premierplug_remove_query_strings', 10, 2);
+
+/**
+ * Disable embeds
+ */
+function premierplug_disable_embeds() {
+    wp_deregister_script('wp-embed');
+}
+add_action('wp_footer', 'premierplug_disable_embeds');
+
+/**
+ * Remove emoji scripts
+ */
+remove_action('wp_head', 'print_emoji_detection_script', 7);
+remove_action('wp_print_styles', 'print_emoji_styles');
+
+/**
+ * Defer JavaScript loading
+ */
+function premierplug_defer_scripts($tag, $handle, $src) {
+    $defer_scripts = array(
+        'premierplug-custom',
+        'lodash',
+        'premierplug-vendor'
+    );
+
+    if (in_array($handle, $defer_scripts)) {
+        return str_replace(' src', ' defer src', $tag);
+    }
+
+    return $tag;
+}
+add_filter('script_loader_tag', 'premierplug_defer_scripts', 10, 3);
