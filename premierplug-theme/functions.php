@@ -265,3 +265,11 @@ function premierplug_defer_scripts($tag, $handle, $src) {
     return $tag;
 }
 add_filter('script_loader_tag', 'premierplug_defer_scripts', 10, 3);
+
+/**
+ * Load SEO Functions
+ */
+if (!file_exists(PREMIERPLUG_THEME_DIR . '/includes')) {
+    mkdir(PREMIERPLUG_THEME_DIR . '/includes', 0755, true);
+}
+require_once PREMIERPLUG_THEME_DIR . '/includes/seo-functions.php';
