@@ -237,9 +237,14 @@ while (have_posts()) : the_post();
                         <label for="inquiry-country" class="form-required"><?php _e('Country', 'premierplug-talent'); ?></label>
                         <select id="inquiry-country" name="country" required class="form-select required">
                             <option value="">- <?php _e('Select', 'premierplug-talent'); ?> -</option>
+                            <option value="India">India</option>
                             <option value="United States">United States</option>
                             <option value="United Kingdom">United Kingdom</option>
                             <option value="Canada">Canada</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Germany">Germany</option>
+                            <option value="France">France</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
 

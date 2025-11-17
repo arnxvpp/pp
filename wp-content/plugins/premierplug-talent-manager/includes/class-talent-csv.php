@@ -22,11 +22,11 @@ class PremierPlug_Talent_CSV {
      */
     public function add_menu_page() {
         add_submenu_page(
-            'edit.php?post_type=talent',
+            'edit.php?post_type=pp_talent',
             'Import/Export',
             'Import/Export',
             'manage_options',
-            'talent-import-export',
+            'pptm-import-export',
             array($this, 'render_page')
         );
     }
@@ -82,7 +82,7 @@ class PremierPlug_Talent_CSV {
         }
 
         $talents = get_posts(array(
-            'post_type' => 'talent',
+            'post_type' => 'pp_talent',
             'posts_per_page' => -1,
             'post_status' => array('publish', 'draft', 'pending')
         ));
@@ -100,20 +100,20 @@ class PremierPlug_Talent_CSV {
         ));
 
         foreach ($talents as $talent) {
-            $categories = wp_get_post_terms($talent->ID, 'talent_category', array('fields' => 'names'));
+            $segments = wp_get_post_terms($talent->ID, 'talent_segment', array('fields' => 'names'));
             $skills = wp_get_post_terms($talent->ID, 'talent_skill', array('fields' => 'names'));
 
             fputcsv($output, array(
                 $talent->ID,
                 $talent->post_title,
-                get_post_meta($talent->ID, '_talent_email', true),
-                get_post_meta($talent->ID, '_talent_phone', true),
+                get_post_meta($talent->ID, '_pptm_contact_email', true),
+                get_post_meta($talent->ID, '_pptm_contact_phone', true),
                 wp_trim_words($talent->post_content, 100),
-                implode('|', $categories),
+                implode('|', $segments),
                 implode('|', $skills),
-                get_post_meta($talent->ID, '_talent_rate', true),
+                get_post_meta($talent->ID, '_pptm_experience_years', true),
                 $talent->post_status,
-                get_post_meta($talent->ID, '_talent_featured', true) ? 'Yes' : 'No'
+                get_post_meta($talent->ID, '_pptm_featured', true) ? 'Yes' : 'No'
             ));
         }
 
@@ -153,8 +153,8 @@ class PremierPlug_Talent_CSV {
             $existing = null;
             if ($update_existing && !empty($talent_data['Email'])) {
                 $existing = get_posts(array(
-                    'post_type' => 'talent',
-                    'meta_key' => '_talent_email',
+                    'post_type' => 'pp_talent',
+                    'meta_key' => '_pptm_contact_email',
                     'meta_value' => $talent_data['Email'],
                     'posts_per_page' => 1
                 ));
@@ -172,7 +172,7 @@ class PremierPlug_Talent_CSV {
                 $updated++;
             } else {
                 $post_id = wp_insert_post(array(
-                    'post_type' => 'talent',
+                    'post_type' => 'pp_talent',
                     'post_title' => $talent_data['Name'],
                     'post_content' => $talent_data['Bio'],
                     'post_status' => !empty($talent_data['Status']) ? $talent_data['Status'] : 'publish'
@@ -181,14 +181,14 @@ class PremierPlug_Talent_CSV {
             }
 
             if ($post_id && !is_wp_error($post_id)) {
-                update_post_meta($post_id, '_talent_email', sanitize_email($talent_data['Email']));
-                update_post_meta($post_id, '_talent_phone', sanitize_text_field($talent_data['Phone']));
-                update_post_meta($post_id, '_talent_rate', sanitize_text_field($talent_data['Rate']));
-                update_post_meta($post_id, '_talent_featured', $talent_data['Featured'] === 'Yes' ? 1 : 0);
+                update_post_meta($post_id, '_pptm_contact_email', sanitize_email($talent_data['Email']));
+                update_post_meta($post_id, '_pptm_contact_phone', sanitize_text_field($talent_data['Phone']));
+                update_post_meta($post_id, '_pptm_experience_years', absint($talent_data['Rate']));
+                update_post_meta($post_id, '_pptm_featured', $talent_data['Featured'] === 'Yes' ? 1 : 0);
 
                 if (!empty($talent_data['Category'])) {
                     $cats = explode('|', $talent_data['Category']);
-                    wp_set_object_terms($post_id, $cats, 'talent_category');
+                    wp_set_object_terms($post_id, $cats, 'talent_segment');
                 }
 
                 if (!empty($talent_data['Skills'])) {
@@ -210,11 +210,11 @@ class PremierPlug_Talent_CSV {
         );
 
         wp_redirect(add_query_arg(array(
-            'page' => 'talent-import-export',
+            'page' => 'pptm-import-export',
             'message' => urlencode($message)
-        ), admin_url('edit.php?post_type=talent')));
+        ), admin_url('edit.php?post_type=pp_talent')));
         exit;
     }
 }
 
-new PremierPlug_Talent_CSV();
+class PPTM_Talent_CSV extends PremierPlug_Talent_CSV {}

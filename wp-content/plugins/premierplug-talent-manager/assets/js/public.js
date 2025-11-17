@@ -16,7 +16,15 @@
         bindEvents: function() {
             $('#pptm-apply-filters').on('click', this.applyFilters.bind(this));
             $('#pptm-clear-filters').on('click', this.clearFilters.bind(this));
-            $('#pptm-search').on('keyup', _.debounce(this.applyFilters.bind(this), 500));
+
+            var searchDebounce;
+            $('#pptm-search').on('keyup', function(e) {
+                clearTimeout(searchDebounce);
+                searchDebounce = setTimeout(function() {
+                    TalentManager.applyFilters();
+                }, 500);
+            });
+
             $('#pptm-inquiry-form').on('submit', this.submitInquiry.bind(this));
 
             $(document).on('click', '.pptm-pagination a', this.handlePagination.bind(this));

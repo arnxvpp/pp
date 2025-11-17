@@ -45,6 +45,7 @@ class PremierPlug_Talent_Manager {
         require_once PPTM_PLUGIN_DIR . 'includes/class-talent-sync.php';
         require_once PPTM_PLUGIN_DIR . 'includes/class-talent-ajax.php';
         require_once PPTM_PLUGIN_DIR . 'includes/class-talent-shortcodes.php';
+        require_once PPTM_PLUGIN_DIR . 'includes/class-talent-csv.php';
         require_once PPTM_PLUGIN_DIR . 'admin/class-talent-admin.php';
         require_once PPTM_PLUGIN_DIR . 'public/class-talent-public.php';
     }
@@ -64,6 +65,7 @@ class PremierPlug_Talent_Manager {
         new PPTM_Talent_Sync();
         new PPTM_Talent_AJAX();
         new PPTM_Talent_Shortcodes();
+        new PPTM_Talent_CSV();
 
         if (is_admin()) {
             new PPTM_Talent_Admin();
