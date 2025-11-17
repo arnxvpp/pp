@@ -54,7 +54,6 @@ add_action('after_setup_theme', 'premierplug_theme_setup');
  * Enqueue Styles
  */
 function premierplug_enqueue_styles() {
-    // Self-hosted fonts (replaces Typekit)
     wp_enqueue_style(
         'premierplug-fonts',
         PREMIERPLUG_THEME_URI . '/assets/css/fonts.css',
@@ -62,19 +61,10 @@ function premierplug_enqueue_styles() {
         PREMIERPLUG_VERSION
     );
 
-    wp_enqueue_style('premierplug-style', get_stylesheet_uri(), array('premierplug-fonts'), PREMIERPLUG_VERSION);
-
     wp_enqueue_style(
-        'premierplug-base',
-        PREMIERPLUG_THEME_URI . '/assets/css/css_IY5cou33-Z4h9ItNyj7yrjAFHPSeHIWcP84YQeF024I.css',
+        'premierplug-style',
+        get_stylesheet_uri(),
         array('premierplug-fonts'),
-        PREMIERPLUG_VERSION
-    );
-
-    wp_enqueue_style(
-        'premierplug-main',
-        PREMIERPLUG_THEME_URI . '/assets/css/css_h9OGQ3YXQzwOiNrq3miMMXsKb0gdhD3HNu3iTHZ-EIY.css',
-        array('premierplug-base'),
         PREMIERPLUG_VERSION
     );
 
