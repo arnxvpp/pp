@@ -117,13 +117,21 @@ function premierplug_enqueue_scripts() {
         'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js',
         array(),
         '4.17.21',
+        false
+    );
+
+    wp_enqueue_script(
+        'hoverintent',
+        'https://cdnjs.cloudflare.com/ajax/libs/jquery-hoverintent/1.10.2/jquery.hoverIntent.min.js',
+        array('jquery'),
+        '1.10.2',
         true
     );
 
     wp_enqueue_script(
         'premierplug-custom',
         PREMIERPLUG_THEME_URI . '/assets/js/js_DN2J3ll5I8mAnGkTsnDsnHkTTd7TtSkd2gb9ibNdN68.js',
-        array('jquery', 'lodash', 'premierplug-main'),
+        array('jquery', 'lodash', 'premierplug-main', 'hoverintent'),
         PREMIERPLUG_VERSION,
         true
     );
