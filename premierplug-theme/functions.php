@@ -145,11 +145,16 @@ class PremierPlug_Walker_Nav_Menu extends Walker_Nav_Menu {
         $atts['title']  = !empty($item->attr_title) ? $item->attr_title : '';
         $atts['target'] = !empty($item->target) ? $item->target : '_self';
         $atts['rel']    = !empty($item->xfn) ? $item->xfn : '';
-        $atts['href']   = !empty($item->url) ? $item->url : 'javascript:void(0);';
-        $atts['class']  = $depth > 0 ? 'linkTo' : '';
 
-        if ($args->walker->has_children && $depth === 0) {
+        // Set href and class based on whether item has children
+        if ($args->walker->has_children) {
+            // Parent items with children should NOT be clickable - they expand
             $atts['href'] = 'javascript:void(0);';
+            $atts['class'] = ''; // No linkTo class for parents
+        } else {
+            // Actual page links should be clickable
+            $atts['href'] = !empty($item->url) ? $item->url : '#';
+            $atts['class'] = 'linkTo'; // Add linkTo class for actual links
         }
 
         $atts = apply_filters('nav_menu_link_attributes', $atts, $item, $args, $depth);
