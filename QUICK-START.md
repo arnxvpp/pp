@@ -1,6 +1,8 @@
 # 🚀 Quick Start Guide
 
-**Get your site running in 10 minutes!**
+**Get your site running in 5 minutes - NO ADDITIONAL COSTS!**
+
+Uses only your existing WordPress/MySQL hosting - no external services needed!
 
 ---
 
@@ -9,46 +11,29 @@
 1. ✅ **premierplug-theme.tar.gz** - WordPress theme
 2. ✅ **premierplug-talent-management-COMPLETE.tar.gz** - Talent plugin
 3. ✅ **premierplug-content-importer.php** - Import script (imports all 26 pages!)
-4. ✅ **premierplug-supabase-sync.php** - Auto-sync plugin
-5. ✅ **supabase-pages-migration.sql** - Database schema
+
+**Everything uses your existing MySQL database - Zero additional costs!**
 
 ---
 
-## ⚡ 5-Step Setup
+## ⚡ 3-Step Setup (5 Minutes Total!)
 
-### Step 1: Upload Theme (2 min)
+### Step 1: Upload & Activate Theme (2 min)
 ```
 WordPress Admin → Appearance → Themes → Add New → Upload Theme
 Select: premierplug-theme.tar.gz
 Click: Install Now → Activate
 ```
 
-### Step 2: Setup Supabase (2 min)
+### Step 2: Import All Content (2 min)
 ```
-Supabase Dashboard → SQL Editor → New Query
-Paste contents of: supabase-pages-migration.sql
-Click: Run
-Verify: 3 tables created (pages, menus, menu_items)
-```
-
-### Step 3: Import All Content (3 min)
-```
-1. Upload premierplug-content-importer.php to WordPress root via FTP/cPanel
+1. Upload premierplug-content-importer.php to WordPress root (via FTP/cPanel)
 2. Visit: your-site.com/premierplug-content-importer.php?key=premierplug_import_2024
 3. Watch as all 26 pages are created automatically!
-4. Delete the import file after completion (security)
+4. Delete the import file after completion (for security)
 ```
 
-### Step 4: Activate Sync Plugin (2 min)
-```
-WordPress Admin → Plugins → Add New → Upload Plugin
-Select: premierplug-supabase-sync.php
-Click: Install Now → Activate
-Settings → Supabase Sync → Enter credentials → Save
-Click: "Sync All Pages Now"
-```
-
-### Step 5: Install Talent Plugin (1 min)
+### Step 3: Install Talent Plugin (1 min)
 ```
 WordPress Admin → Plugins → Add New → Upload Plugin
 Select: premierplug-talent-management-COMPLETE.tar.gz
@@ -60,18 +45,42 @@ Click: Install Now → Activate
 ## ✅ Verify Everything Works
 
 1. Visit your homepage → Check animated intro plays
-2. Click hamburger menu → Verify 3-level navigation
-3. Click any page → Check content displays
-4. Go to WordPress Admin → Pages → See all 26+ pages
-5. Check Supabase → Verify data synced
+2. Click hamburger menu → Verify 3-level navigation works
+3. Click any page → Check content displays correctly
+4. Go to WordPress Admin → Pages → See all 26+ pages created
+5. Check PHPMyAdmin → See all data in wp_posts table
+
+---
+
+## 💾 Where Data Is Stored
+
+**Everything uses your WordPress MySQL database:**
+- Pages stored in: `wp_posts` table
+- Menus stored in: `wp_terms` and `wp_term_relationships` tables
+- Images stored in: `wp_posts` (as attachments)
+- Talent profiles stored in: `wp_posts` (custom post type)
+
+**No external database needed!** Uses your existing hosting.
+
+---
+
+## 💰 Cost
+
+**$0 - Completely FREE!**
+- ✅ Uses your existing WordPress hosting
+- ✅ Uses your existing MySQL database
+- ✅ Uses your existing PHPMyAdmin
+- ✅ No external services
+- ✅ No monthly fees
+- ✅ No hidden costs
 
 ---
 
 ## 📚 Detailed Documentation
 
-- **IMPORT-INSTRUCTIONS.md** - Full import guide
-- **INSTALLATION.md** - Theme setup details  
-- **PLUGIN-FIX-SUMMARY.md** - Talent plugin docs
+- **IMPORT-INSTRUCTIONS.md** - Full import guide with troubleshooting
+- **INSTALLATION.md** - Theme setup details
+- **PLUGIN-FIX-SUMMARY.md** - Talent plugin documentation
 - **FINAL-DELIVERY.md** - Complete overview
 
 ---
@@ -83,7 +92,7 @@ Your site is now live with:
 - ✅ 3-level navigation menus
 - ✅ All images assigned
 - ✅ Talent management system
-- ✅ Supabase integration
-- ✅ Auto-sync enabled
+- ✅ All stored in your MySQL database
+- ✅ Zero additional costs
 
-**Total time: 10 minutes!** 🚀
+**Total time: 5 minutes!** 🚀

@@ -2,9 +2,10 @@
 
 Complete WordPress site with automated content import for PremierPlug.org - a modern media consultancy.
 
-## 🚀 Quick Start (10 Minutes!)
+## 🚀 Quick Start (5 Minutes!)
 
 **New! Automated content import - all 26 pages created automatically!**
+**Uses only your existing MySQL hosting - NO additional costs!**
 
 ### Step 1: Install Theme (2 min)
 ```
@@ -12,30 +13,20 @@ WordPress Admin → Appearance → Themes → Add New → Upload
 Select: premierplug-theme.tar.gz → Install → Activate
 ```
 
-### Step 2: Setup Supabase (2 min)
-```
-Supabase Dashboard → SQL Editor → Run: supabase-pages-migration.sql
-```
-
-### Step 3: Import All Content (3 min) - NEW!
+### Step 2: Import All Content (2 min) - NEW!
 ```
 1. Upload: premierplug-content-importer.php to WordPress root
 2. Visit: your-site.com/premierplug-content-importer.php?key=premierplug_import_2024
 3. Watch all 26 pages get created automatically!
 ```
 
-### Step 4: Activate Auto-Sync (2 min)
-```
-WordPress Admin → Plugins → Upload: premierplug-supabase-sync.php
-Settings → Supabase Sync → Configure → Sync Now
-```
-
-### Step 5: Install Talent Plugin (1 min)
+### Step 3: Install Talent Plugin (1 min)
 ```
 WordPress Admin → Plugins → Upload: premierplug-talent-management-COMPLETE.tar.gz
 ```
 
 **Done! Your site is live with all content, menus, and images!** 🎉
+**Everything stored in your existing WordPress MySQL database - $0 cost!**
 
 ---
 
@@ -56,15 +47,9 @@ WordPress Admin → Plugins → Upload: premierplug-talent-management-COMPLETE.t
 - ✅ Assigns all featured images
 - ✅ Sets up page hierarchy
 - ✅ Beautiful progress interface
+- ✅ Uses your existing MySQL database
 
-### 3. Supabase Integration
-- ✅ **supabase-pages-migration.sql** - Database schema
-- ✅ **premierplug-supabase-sync.php** - Auto-sync plugin
-- ✅ Real-time sync on page save/delete
-- ✅ Complete menu synchronization
-- ✅ Row Level Security configured
-
-### 4. Talent Management Plugin (14KB)
+### 3. Talent Management Plugin (14KB)
 - ✅ **premierplug-talent-management-COMPLETE.tar.gz**
 - ✅ Custom post type with taxonomies
 - ✅ Admin interface with metaboxes
@@ -72,8 +57,8 @@ WordPress Admin → Plugins → Upload: premierplug-talent-management-COMPLETE.t
 - ✅ AJAX search functionality
 - ✅ 6 templates, CSS, and JavaScript
 
-### 5. Complete Documentation
-- ✅ **QUICK-START.md** - 10-minute setup guide ← START HERE!
+### 4. Complete Documentation
+- ✅ **QUICK-START.md** - 5-minute setup guide ← START HERE!
 - ✅ **IMPORT-INSTRUCTIONS.md** - Detailed import guide
 - ✅ **INSTALLATION.md** - Theme setup
 - ✅ **PLUGIN-FIX-SUMMARY.md** - Plugin documentation
@@ -111,9 +96,10 @@ WordPress Admin → Plugins → Upload: premierplug-talent-management-COMPLETE.t
 - ✅ **Automated Import** - 26 pages in 5 minutes (vs 3 hours manual)
 - ✅ **Exact HTML Replica** - All design preserved perfectly
 - ✅ **3-Level Menus** - Complex navigation handled automatically
-- ✅ **Supabase Integration** - Real-time database sync
+- ✅ **MySQL Database** - Uses your existing hosting database
 - ✅ **Talent Management** - Complete roster system
 - ✅ **Zero Bugs** - Production tested and verified
+- ✅ **Zero Additional Costs** - No external services needed
 - ✅ **Mobile Responsive** - Works on all devices
 - ✅ **Fast Loading** - Optimized for performance
 
@@ -123,16 +109,16 @@ WordPress Admin → Plugins → Upload: premierplug-talent-management-COMPLETE.t
 
 - WordPress 6.0+
 - PHP 7.4+
-- Supabase (PostgreSQL)
+- MySQL (your existing database)
 - HTML5/CSS3/JavaScript ES6
 - Custom WordPress theme (no page builder bloat)
-- 2 Custom WordPress plugins
+- Custom talent management plugin
 
 ---
 
 ## 📚 Documentation
 
-**Start here:** `QUICK-START.md` for 10-minute setup!
+**Start here:** `QUICK-START.md` for 5-minute setup!
 
 Then see:
 - `IMPORT-INSTRUCTIONS.md` - Full import walkthrough with troubleshooting
@@ -151,10 +137,9 @@ project/
 ├── premierplug-theme.tar.gz                      ← WordPress theme (208KB)
 ├── premierplug-talent-management-COMPLETE.tar.gz ← Talent plugin (14KB)
 ├── premierplug-content-importer.php              ← Import script (21KB)
-├── premierplug-supabase-sync.php                 ← Auto-sync plugin (8.5KB)
-├── supabase-pages-migration.sql                  ← Database schema (5.8KB)
-├── QUICK-START.md                                ← Start here!
+├── QUICK-START.md                                ← Start here! (5-min setup)
 ├── IMPORT-INSTRUCTIONS.md                        ← Detailed import guide
+├── INSTALLATION.md                               ← Theme setup
 ├── FINAL-DELIVERY.md                             ← Complete overview
 ├── README.md                                     ← This file
 ├── archive/                                      ← Original HTML files (26)
@@ -180,7 +165,8 @@ project/
 - Testing: Complete ✅
 - Bugs: Zero ✅
 
-**Time to deploy: 10 minutes total!** 🚀
+**Time to deploy: 5 minutes total!** 🚀
+**Cost: $0 - Uses your existing hosting!** 💰
 
 ---
 
@@ -205,8 +191,9 @@ project/
 ## 🚀 Next Steps
 
 1. Read `QUICK-START.md`
-2. Follow the 5 simple steps
-3. Your site will be live in 10 minutes!
+2. Follow the 3 simple steps
+3. Your site will be live in 5 minutes!
+4. Zero additional costs - uses your existing MySQL database
 
 ---
 
