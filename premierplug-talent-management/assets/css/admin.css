@@ -1,0 +1,48 @@
+/* PremierPlug Talent Management - Admin Styles */
+
+.pptm-admin-page {
+    max-width: 1200px;
+}
+
+.pptm-settings-section {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.pptm-settings-section h2 {
+    margin-top: 0;
+    border-bottom: 1px solid #ccd0d4;
+    padding-bottom: 10px;
+}
+
+.pptm-shortcode-box {
+    background: #f0f0f1;
+    padding: 15px;
+    border-left: 4px solid #2271b1;
+    margin: 10px 0;
+}
+
+.pptm-shortcode-box code {
+    background: #fff;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: monospace;
+}
+
+/* Column customization */
+.column-featured_image img {
+    border-radius: 4px;
+}
+
+.column-talent_contact a {
+    color: #2271b1;
+    text-decoration: none;
+}
+
+.column-talent_contact a:hover {
+    color: #135e96;
+    text-decoration: underline;
+}

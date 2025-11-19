@@ -1,0 +1,472 @@
+/* PremierPlug Talent Management - Public Styles */
+
+/* Talent Grid */
+.pptm-talent-grid {
+    display: grid;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.pptm-talent-grid.columns-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.pptm-talent-grid.columns-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.pptm-talent-grid.columns-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 992px) {
+    .pptm-talent-grid.columns-3,
+    .pptm-talent-grid.columns-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .pptm-talent-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Talent Card */
+.pptm-talent-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pptm-talent-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.pptm-talent-image {
+    position: relative;
+    padding-bottom: 100%;
+    overflow: hidden;
+}
+
+.pptm-talent-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.pptm-talent-card:hover .pptm-talent-image img {
+    transform: scale(1.05);
+}
+
+.pptm-talent-content {
+    padding: 20px;
+}
+
+.pptm-talent-title {
+    margin: 0 0 10px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.pptm-talent-title a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.pptm-talent-title a:hover {
+    color: #d92228;
+}
+
+.pptm-talent-categories {
+    color: #d92228;
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.pptm-talent-excerpt {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.pptm-talent-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    color: #888;
+}
+
+.pptm-talent-location .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+.pptm-talent-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #d92228;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.pptm-talent-link:hover {
+    background: #b01b20;
+    color: #fff;
+}
+
+/* Talent List */
+.pptm-talent-list {
+    margin: 30px 0;
+}
+
+.pptm-talent-list-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease;
+}
+
+.pptm-talent-list-item:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.pptm-talent-list-image {
+    flex-shrink: 0;
+}
+
+.pptm-talent-list-image img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.pptm-talent-list-content {
+    flex-grow: 1;
+}
+
+.pptm-talent-list-title {
+    margin: 0 0 5px;
+    font-size: 18px;
+}
+
+.pptm-talent-list-title a {
+    color: #333;
+    text-decoration: none;
+}
+
+.pptm-talent-list-title a:hover {
+    color: #d92228;
+}
+
+.pptm-talent-list-categories {
+    color: #d92228;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.pptm-talent-list-location {
+    color: #888;
+    font-size: 13px;
+}
+
+.pptm-view-profile {
+    padding: 8px 16px;
+    background: #d92228;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.pptm-view-profile:hover {
+    background: #b01b20;
+    color: #fff;
+}
+
+/* Single Talent */
+.pptm-talent-single {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.pptm-talent-header {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.pptm-talent-photo {
+    flex-shrink: 0;
+}
+
+.pptm-talent-photo img {
+    width: 300px;
+    height: 300px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.pptm-talent-header-content {
+    flex-grow: 1;
+}
+
+.pptm-talent-name {
+    margin: 0 0 15px;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.pptm-talent-body {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+}
+
+.pptm-talent-excerpt {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-left: 4px solid #d92228;
+}
+
+.pptm-talent-bio {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 30px;
+}
+
+.pptm-talent-skills h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.pptm-skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pptm-skill-tag {
+    display: inline-block;
+    padding: 8px 15px;
+    background: #f0f0f0;
+    color: #333;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.pptm-talent-info-box {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.pptm-talent-info-box h3 {
+    margin: 0 0 20px;
+    font-size: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.pptm-info-item {
+    margin-bottom: 15px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.pptm-info-item:last-child {
+    margin-bottom: 0;
+}
+
+.pptm-info-item strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.pptm-info-item a {
+    color: #d92228;
+    text-decoration: none;
+}
+
+.pptm-info-item a:hover {
+    text-decoration: underline;
+}
+
+.pptm-social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pptm-social-link {
+    display: block;
+    padding: 10px 15px;
+    background: #f0f0f0;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+.pptm-social-link:hover {
+    background: #d92228;
+    color: #fff;
+}
+
+/* Search Form */
+.pptm-talent-search-form {
+    margin: 30px 0;
+}
+
+.pptm-search-form {
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.pptm-search-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 15px;
+    align-items: end;
+}
+
+.pptm-search-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.pptm-search-field input,
+.pptm-search-field select {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.pptm-search-submit {
+    padding: 11px 30px;
+    background: #d92228;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.pptm-search-submit:hover {
+    background: #b01b20;
+}
+
+.pptm-search-loading {
+    text-align: center;
+    padding: 40px;
+    font-size: 16px;
+    color: #666;
+}
+
+.pptm-no-results {
+    text-align: center;
+    padding: 40px;
+    font-size: 16px;
+    color: #666;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+/* Archive */
+.pptm-archive-talent-wrapper {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.pptm-archive-header {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.pptm-archive-title {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.pptm-archive-description {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .pptm-talent-header {
+        flex-direction: column;
+    }
+
+    .pptm-talent-photo img {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .pptm-talent-body {
+        grid-template-columns: 1fr;
+    }
+
+    .pptm-search-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .pptm-talent-name {
+        font-size: 28px;
+    }
+
+    .pptm-talent-list-item {
+        flex-direction: column;
+        text-align: center;
+    }
+}
