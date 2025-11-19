@@ -1,3 +1,0 @@
-This file represents the theme screenshot.
-In a real deployment, you would replace this with an actual 1200x900px PNG image
-showing a preview of the theme design.

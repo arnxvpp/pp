@@ -10,13 +10,12 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-
 <div>
     <div class="layout-container">
 
         <header class="site-header">
             <div class="site-header-container">
-                <a href="<?php echo esc_url(home_url('/')); ?>" title="<?php bloginfo('name'); ?>" rel="home" class="logo" aria-label="Home">
+                <a href="<?php echo esc_url(home_url('/')); ?>" title="<?php bloginfo('name'); ?>" rel="home" class="logo" aria-role="button" aria-label="Home">
                     <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
                         <title>PremierPlug</title>
                         <g transform="translate(0.000000,500.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">

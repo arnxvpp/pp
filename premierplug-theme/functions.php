@@ -46,17 +46,18 @@ add_action('after_setup_theme', 'premierplug_setup');
  */
 function premierplug_enqueue_styles() {
     wp_enqueue_style(
-        'premierplug-fonts',
-        PREMIERPLUG_THEME_URI . '/assets/css/fonts.css',
+        'premierplug-style',
+        get_stylesheet_uri(),
         array(),
         PREMIERPLUG_VERSION
     );
 
     wp_enqueue_style(
-        'premierplug-style',
-        get_stylesheet_uri(),
-        array('premierplug-fonts'),
-        PREMIERPLUG_VERSION
+        'premierplug-print',
+        PREMIERPLUG_THEME_URI . '/assets/css/print.css',
+        array('premierplug-style'),
+        PREMIERPLUG_VERSION,
+        'print'
     );
 }
 add_action('wp_enqueue_scripts', 'premierplug_enqueue_styles');
@@ -68,9 +69,41 @@ function premierplug_enqueue_scripts() {
     wp_enqueue_script('jquery');
 
     wp_enqueue_script(
-        'premierplug-navigation',
-        PREMIERPLUG_THEME_URI . '/assets/js/navigation.js',
+        'lodash',
+        'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js',
+        array(),
+        '4.17.21',
+        false
+    );
+
+    wp_enqueue_script(
+        'premierplug-vendor',
+        PREMIERPLUG_THEME_URI . '/assets/js/vendor.js',
         array('jquery'),
+        PREMIERPLUG_VERSION,
+        false
+    );
+
+    wp_enqueue_script(
+        'premierplug-main',
+        PREMIERPLUG_THEME_URI . '/assets/js/main.js',
+        array('jquery', 'lodash', 'premierplug-vendor'),
+        PREMIERPLUG_VERSION,
+        true
+    );
+
+    wp_enqueue_script(
+        'premierplug-custom',
+        PREMIERPLUG_THEME_URI . '/assets/js/custom.js',
+        array('jquery', 'lodash', 'premierplug-main'),
+        PREMIERPLUG_VERSION,
+        true
+    );
+
+    wp_enqueue_script(
+        'premierplug-navigation',
+        PREMIERPLUG_THEME_URI . '/assets/js/navigation-dropdown-fix.js',
+        array('jquery', 'premierplug-custom'),
         PREMIERPLUG_VERSION,
         true
     );
@@ -83,7 +116,7 @@ add_action('wp_enqueue_scripts', 'premierplug_enqueue_scripts');
 class PremierPlug_Walker_Nav_Menu extends Walker_Nav_Menu {
     function start_lvl(&$output, $depth = 0, $args = null) {
         $indent = str_repeat("\t", $depth);
-        $output .= "\n$indent<ul class=\"sub-menu\">\n";
+        $output .= "\n$indent<ul>\n";
     }
 
     function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
@@ -103,10 +136,14 @@ class PremierPlug_Walker_Nav_Menu extends Walker_Nav_Menu {
 
         $atts = array();
         $atts['title']  = !empty($item->attr_title) ? $item->attr_title : '';
-        $atts['target'] = !empty($item->target) ? $item->target : '';
+        $atts['target'] = !empty($item->target) ? $item->target : '_self';
         $atts['rel']    = !empty($item->xfn) ? $item->xfn : '';
-        $atts['href']   = !empty($item->url) ? $item->url : '';
+        $atts['href']   = !empty($item->url) ? $item->url : 'javascript:void(0);';
         $atts['class']  = $depth > 0 ? 'linkTo' : '';
+
+        if ($args->walker->has_children && $depth === 0) {
+            $atts['href'] = 'javascript:void(0);';
+        }
 
         $atts = apply_filters('nav_menu_link_attributes', $atts, $item, $args, $depth);
 
