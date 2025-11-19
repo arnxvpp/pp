@@ -53,6 +53,13 @@ function premierplug_enqueue_styles() {
     );
 
     wp_enqueue_style(
+        'premierplug-navigation-fix',
+        PREMIERPLUG_THEME_URI . '/assets/css/navigation-dropdown-fix.css',
+        array('premierplug-style'),
+        PREMIERPLUG_VERSION
+    );
+
+    wp_enqueue_style(
         'premierplug-print',
         PREMIERPLUG_THEME_URI . '/assets/css/print.css',
         array('premierplug-style'),
