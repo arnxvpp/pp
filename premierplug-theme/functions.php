@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('PREMIERPLUG_VERSION', '1.0.0');
+define('PREMIERPLUG_VERSION', '1.0.1');
 define('PREMIERPLUG_THEME_DIR', get_template_directory());
 define('PREMIERPLUG_THEME_URI', get_template_directory_uri());
 
@@ -53,16 +53,37 @@ function premierplug_enqueue_styles() {
     );
 
     wp_enqueue_style(
+        'premierplug-main-design-system',
+        PREMIERPLUG_THEME_URI . '/assets/css/main-design-system.css',
+        array('premierplug-style'),
+        PREMIERPLUG_VERSION
+    );
+
+    wp_enqueue_style(
+        'premierplug-system-ui',
+        PREMIERPLUG_THEME_URI . '/assets/css/system-ui.css',
+        array('premierplug-main-design-system'),
+        PREMIERPLUG_VERSION
+    );
+
+    wp_enqueue_style(
+        'premierplug-layout',
+        PREMIERPLUG_THEME_URI . '/assets/css/layout.css',
+        array('premierplug-system-ui'),
+        PREMIERPLUG_VERSION
+    );
+
+    wp_enqueue_style(
         'premierplug-navigation-fix',
         PREMIERPLUG_THEME_URI . '/assets/css/navigation-dropdown-fix.css',
-        array('premierplug-style'),
+        array('premierplug-layout'),
         PREMIERPLUG_VERSION
     );
 
     wp_enqueue_style(
         'premierplug-print',
         PREMIERPLUG_THEME_URI . '/assets/css/print.css',
-        array('premierplug-style'),
+        array('premierplug-navigation-fix'),
         PREMIERPLUG_VERSION,
         'print'
     );
