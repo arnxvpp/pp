@@ -8,8 +8,8 @@ Uses only your existing WordPress/MySQL hosting - no external services needed!
 
 ## 📦 What You Have
 
-1. ✅ **premierplug-theme.tar.gz** - WordPress theme
-2. ✅ **premierplug-talent-management-COMPLETE.tar.gz** - Talent plugin
+1. ✅ **premierplug-theme-v1.0.0.zip** - WordPress theme
+2. ✅ **premierplug-talent-management-v1.2.0.zip** - Talent plugin
 3. ✅ **premierplug-content-importer.php** - Import script (imports all 26 pages!)
 
 **Everything uses your existing MySQL database - Zero additional costs!**
@@ -21,7 +21,7 @@ Uses only your existing WordPress/MySQL hosting - no external services needed!
 ### Step 1: Upload & Activate Theme (2 min)
 ```
 WordPress Admin → Appearance → Themes → Add New → Upload Theme
-Select: premierplug-theme.tar.gz
+Select: premierplug-theme-v1.0.0.zip
 Click: Install Now → Activate
 ```
 
@@ -36,7 +36,7 @@ Click: Install Now → Activate
 ### Step 3: Install Talent Plugin (1 min)
 ```
 WordPress Admin → Plugins → Add New → Upload Plugin
-Select: premierplug-talent-management-COMPLETE.tar.gz
+Select: premierplug-talent-management-v1.2.0.zip
 Click: Install Now → Activate
 ```
 

@@ -36,7 +36,7 @@ premierplug-theme/
 ### Option 1: Upload via WordPress Admin (Recommended)
 
 1. **Download the theme**
-   - Get `premierplug-theme.tar.gz` OR
+   - Get `premierplug-theme-v1.0.0.zip` OR
    - Get the entire `premierplug-theme` folder
 
 2. **Login to WordPress**
@@ -46,7 +46,7 @@ premierplug-theme/
    - Navigate to: **Appearance → Themes**
    - Click: **Add New**
    - Click: **Upload Theme**
-   - Choose: `premierplug-theme.tar.gz` (or zip it first)
+   - Choose: `premierplug-theme-v1.0.0.zip`
    - Click: **Install Now**
 
 4. **Activate Theme**

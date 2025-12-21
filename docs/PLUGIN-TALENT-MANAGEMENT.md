@@ -4,7 +4,7 @@
 
 **Name:** PremierPlug Talent Management
 **Version:** 1.0.0
-**Package:** `premierplug-talent-management.tar.gz` (7.4KB)
+**Package:** `premierplug-talent-management-v1.2.0.zip` (46KB)
 
 ## 📦 What's Included
 
@@ -41,7 +41,7 @@ premierplug-talent-management/
 
 ### 1. Upload Plugin
 ```
-1. Download: premierplug-talent-management.tar.gz
+1. Download: premierplug-talent-management-v1.2.0.zip
 2. WordPress Admin → Plugins → Add New → Upload Plugin
 3. Upload file → Install Now
 4. Click Activate

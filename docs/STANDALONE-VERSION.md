@@ -61,7 +61,7 @@ This is a **100% standalone WordPress plugin** with no external dependencies.
 
 ### Step 1: Upload
 ```
-Upload: premierplug-talent-management.tar.gz
+Upload: premierplug-talent-management-v1.2.0.zip
 To: /wp-content/plugins/
 ```
 

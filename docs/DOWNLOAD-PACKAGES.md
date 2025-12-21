@@ -3,7 +3,7 @@
 ## 📦 Ready to Install
 
 ### 1. WordPress Theme
-**File**: `premierplug-theme-COMPLETE-FIXED.tar.gz` (210KB)
+**File**: `premierplug-theme-v1.0.0.zip` (220KB)
 
 **Includes**:
 - ✅ Fixed navigation (parents expand, children navigate)
@@ -19,7 +19,7 @@
 ---
 
 ### 2. Talent Management Plugin  
-**File**: `premierplug-talent-management-COMPLETE.tar.gz` (14KB)
+**File**: `premierplug-talent-management-v1.2.0.zip` (46KB)
 
 **Features**:
 - Custom post type for talent profiles

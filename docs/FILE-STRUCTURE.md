@@ -24,14 +24,13 @@ premierplug/
 
 ```
 packages/
-├── premierplug-talent-management-v1.2.0.tar.gz    WordPress plugin (30KB)
-├── premierplug-talent-management-STANDALONE.tar.gz (Same as above)
-├── premierplug-theme-v1.0.0.tar.gz                WordPress theme (2MB)
+├── premierplug-talent-management-v1.2.0.zip    WordPress plugin (46KB)
+├── premierplug-theme-v1.0.0.zip                WordPress theme (220KB)
 └── premierplug-content-importer.php               Content migration tool
 ```
 
 ### Usage
-1. Upload `.tar.gz` files directly to WordPress
+1. Upload `.zip` files directly to WordPress
 2. Use content importer for migration
 3. No extraction needed (WordPress handles it)
 
@@ -315,8 +314,8 @@ Total:             ~2 MB
 
 ### For Installation
 **Required:**
-- `/packages/premierplug-talent-management-v1.2.0.tar.gz`
-- `/packages/premierplug-theme-v1.0.0.tar.gz`
+- `/packages/premierplug-talent-management-v1.2.0.zip`
+- `/packages/premierplug-theme-v1.0.0.zip`
 
 **Optional:**
 - `/packages/premierplug-content-importer.php` (if migrating from HTML)
@@ -345,11 +344,11 @@ Total:             ~2 MB
 ### Upload to WordPress
 
 **Plugins:**
-1. Upload: `packages/premierplug-talent-management-v1.2.0.tar.gz`
+1. Upload: `packages/premierplug-talent-management-v1.2.0.zip`
 2. Activate through WordPress admin
 
 **Themes:**
-1. Upload: `packages/premierplug-theme-v1.0.0.tar.gz`
+1. Upload: `packages/premierplug-theme-v1.0.0.zip`
 2. Activate through WordPress admin
 
 **Content Importer (optional):**

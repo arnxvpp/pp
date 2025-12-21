@@ -96,7 +96,7 @@ if ($args->walker->has_children) {
 
 ## 📁 Updated Package
 
-**File**: `premierplug-theme-COMPLETE-FIXED.tar.gz` (209KB)
+**File**: `premierplug-theme-v1.0.0.zip` (220KB)
 
 Includes:
 - ✅ Fixed Walker logic
@@ -140,7 +140,7 @@ The navigation now works EXACTLY like the static HTML version:
 
 ## Quick Deploy
 
-1. Download: `premierplug-theme-COMPLETE-FIXED.tar.gz`
+1. Download: `premierplug-theme-v1.0.0.zip`
 2. Upload to WordPress → Themes
 3. Activate
 4. Test navigation

@@ -49,13 +49,13 @@ images/ ✅ (30 images)
 ### Step 1: Upload Theme
 1. Go to WordPress Admin → Appearance → Themes
 2. Click "Add New" → "Upload Theme"
-3. Upload `premierplug-theme.tar.gz` (or upload folder via FTP)
+3. Upload `premierplug-theme-v1.0.0.zip` (or upload folder via FTP)
 4. Click "Activate"
 
 ### Step 2: Upload Plugin
 1. Go to WordPress Admin → Plugins → Add New
 2. Click "Upload Plugin"
-3. Upload `premierplug-talent-management-COMPLETE.tar.gz` (or upload folder via FTP)
+3. Upload `premierplug-talent-management-v1.2.0.zip` (or upload folder via FTP)
 4. Click "Activate"
 
 ### Step 3: Run Import Script

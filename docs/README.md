@@ -10,7 +10,7 @@ Complete WordPress site with automated content import for PremierPlug.org - a mo
 ### Step 1: Install Theme (2 min)
 ```
 WordPress Admin > Appearance > Themes > Add New > Upload
-Select: premierplug-theme-COMPLETE-FIXED.tar.gz > Install > Activate
+Select: premierplug-theme-v1.0.0.zip > Install > Activate
 ```
 
 ### Step 2: Import All Content (2 min)
@@ -25,7 +25,7 @@ Select: premierplug-theme-COMPLETE-FIXED.tar.gz > Install > Activate
 
 ### Step 3: Install Talent Plugin (1 min)
 ```
-WordPress Admin > Plugins > Upload: premierplug-talent-management-COMPLETE.tar.gz
+WordPress Admin > Plugins > Upload: premierplug-talent-management-v1.2.0.zip
 ```
 
 **Done! Your site is live with all content, menus, and images!**
@@ -34,7 +34,7 @@ WordPress Admin > Plugins > Upload: premierplug-talent-management-COMPLETE.tar.g
 
 ## Package Contents
 
-### 1. WordPress Theme (premierplug-theme-COMPLETE-FIXED.tar.gz - 210KB)
+### 1. WordPress Theme (premierplug-theme-v1.0.0.zip - 220KB)
 - Complete HTML/CSS/JS conversion
 - Animated homepage with logo reveal
 - Full-screen overlay navigation (3 levels deep)
@@ -54,7 +54,7 @@ WordPress Admin > Plugins > Upload: premierplug-talent-management-COMPLETE.tar.g
 - Uses your existing MySQL database
 
 ### 3. Talent Management Plugin (14KB)
-- **premierplug-talent-management-COMPLETE.tar.gz**
+- **premierplug-talent-management-v1.2.0.zip**
 - Custom post type with taxonomies
 - Admin interface with metaboxes
 - 4 shortcodes (grid, list, single, search)
@@ -137,8 +137,8 @@ The navigation follows the original HTML exactly:
 
 ```
 project/
-├── premierplug-theme-COMPLETE-FIXED.tar.gz    # WordPress theme (210KB)
-├── premierplug-talent-management-COMPLETE.tar.gz # Talent plugin (14KB)
+├── premierplug-theme-v1.0.0.zip                # WordPress theme (220KB)
+├── premierplug-talent-management-v1.2.0.zip    # Talent plugin (46KB)
 ├── premierplug-content-importer.php           # Import script
 ├── DOWNLOAD-PACKAGES.md                       # Start here!
 ├── README.md                                  # This file
