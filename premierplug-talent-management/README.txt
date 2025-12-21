@@ -3,7 +3,7 @@ Contributors: PremierPlug Team
 Tags: talent, portfolio, management, agency, roster
 Requires at least: 6.0
 Tested up to: 6.4
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -23,7 +23,11 @@ PremierPlug Talent Management is a comprehensive plugin for managing talent rost
 * Contact information management
 * Professional details (experience, rates)
 * Social media integration
-* Article management system (press releases, blog posts, awards, news, media coverage)
+* Dynamic custom post type manager
+* Create unlimited article types via admin panel
+* Create unlimited talent types/categories via admin panel
+* Create unlimited service types via admin panel
+* Built-in article types: press releases, industry insights, thought leadership, company news, case studies
 * Talent-article relationships
 * AJAX-powered search and filtering
 * Multiple display options (grid, list, single)
@@ -78,6 +82,16 @@ Yes! Copy templates from plugin folder to your theme's `premierplug-talent-manag
 
 == Changelog ==
 
+= 1.3.0 =
+* NEW: Dynamic custom post type manager
+* NEW: Add unlimited article types from admin panel
+* NEW: Add unlimited talent types/categories from admin panel
+* NEW: Add unlimited service types from admin panel
+* NEW: Admin interface for managing all custom types
+* NEW: No code editing required to add new types
+* Improved flexibility and extensibility
+* Enhanced admin experience
+
 = 1.2.0 =
 * Removed all external dependencies
 * Pure WordPress implementation
@@ -102,6 +116,9 @@ Yes! Copy templates from plugin folder to your theme's `premierplug-talent-manag
 * Admin interface
 
 == Upgrade Notice ==
+
+= 1.3.0 =
+Major update! Now you can add unlimited custom post types from the admin panel. No code editing required.
 
 = 1.2.0 =
 This version removes external dependencies. All data remains safely in your WordPress database.

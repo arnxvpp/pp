@@ -29,10 +29,48 @@ class PPTM_Article_Metaboxes {
     }
 
     /**
+     * Get all article post types from custom post type manager
+     */
+    private static function get_all_article_post_types() {
+        $manager = new PremierPlug_Custom_Post_Type_Manager();
+        $custom_types = $manager->get_custom_post_types();
+        $article_types = array();
+
+        if (isset($custom_types['articles']['items'])) {
+            foreach ($custom_types['articles']['items'] as $type_data) {
+                if ($type_data['enabled']) {
+                    $article_types[] = 'article_' . $type_data['id'];
+                }
+            }
+        }
+
+        return $article_types;
+    }
+
+    /**
+     * Check if post type is an article type
+     */
+    private static function is_article_type($post_type) {
+        return strpos($post_type, 'article_') === 0;
+    }
+
+    /**
+     * Get type label from post type
+     */
+    private static function get_type_label($post_type) {
+        if (strpos($post_type, 'article_') !== 0) {
+            return $post_type;
+        }
+
+        $post_type_obj = get_post_type_object($post_type);
+        return $post_type_obj ? $post_type_obj->labels->singular_name : $post_type;
+    }
+
+    /**
      * Add metaboxes
      */
     public static function add_metaboxes() {
-        $article_types = PPTM_Article_Post_Types::get_article_types();
+        $article_types = self::get_all_article_post_types();
 
         foreach ($article_types as $type) {
             add_meta_box(
@@ -311,7 +349,7 @@ class PPTM_Article_Metaboxes {
                                     <strong><?php echo esc_html($article_post->post_title); ?></strong>
                                 </td>
                                 <td>
-                                    <?php echo esc_html(PPTM_Article_Post_Types::get_type_label($article['post_type'])); ?>
+                                    <?php echo esc_html(self::get_type_label($article['post_type'])); ?>
                                 </td>
                                 <td>
                                     <?php echo esc_html(date_i18n(get_option('date_format'), strtotime($article['post_date']))); ?>
@@ -357,7 +395,7 @@ class PPTM_Article_Metaboxes {
             return;
         }
 
-        if (!PPTM_Article_Post_Types::is_article_type($post->post_type)) {
+        if (!self::is_article_type($post->post_type)) {
             return;
         }
 
@@ -397,7 +435,7 @@ class PPTM_Article_Metaboxes {
             return;
         }
 
-        if (!PPTM_Article_Post_Types::is_article_type($post->post_type)) {
+        if (!self::is_article_type($post->post_type)) {
             return;
         }
 
@@ -416,7 +454,7 @@ class PPTM_Article_Metaboxes {
         }
 
         $screen = get_current_screen();
-        if (!$screen || !PPTM_Article_Post_Types::is_article_type($screen->post_type)) {
+        if (!$screen || !self::is_article_type($screen->post_type)) {
             return;
         }
 

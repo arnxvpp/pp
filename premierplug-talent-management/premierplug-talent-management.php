@@ -2,8 +2,8 @@
 /**
  * Plugin Name: PremierPlug Talent Management
  * Plugin URI: https://premierplug.org
- * Description: Complete talent management system with profiles, categories, search, and article management for PremierPlug agency.
- * Version: 1.2.0
+ * Description: Complete talent management system with profiles, categories, search, and article management for PremierPlug agency. Now with dynamic custom post types!
+ * Version: 1.3.0
  * Author: PremierPlug Team
  * Author URI: https://premierplug.org
  * License: GPL v2 or later
@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('PPTM_VERSION', '1.2.0');
+define('PPTM_VERSION', '1.3.0');
 define('PPTM_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('PPTM_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('PPTM_PLUGIN_FILE', __FILE__);
@@ -45,7 +45,7 @@ class PremierPlug_Talent_Management {
         require_once PPTM_PLUGIN_DIR . 'admin/class-admin.php';
         require_once PPTM_PLUGIN_DIR . 'public/class-public.php';
 
-        require_once PPTM_PLUGIN_DIR . 'includes/class-article-post-types.php';
+        require_once PPTM_PLUGIN_DIR . 'admin/class-custom-post-type-manager.php';
         require_once PPTM_PLUGIN_DIR . 'includes/class-article-relationships.php';
         require_once PPTM_PLUGIN_DIR . 'includes/class-article-metaboxes.php';
         require_once PPTM_PLUGIN_DIR . 'includes/class-article-queries.php';
@@ -70,7 +70,7 @@ class PremierPlug_Talent_Management {
         PPTM_Admin::init();
         PPTM_Public::init();
 
-        PPTM_Article_Post_Types::init();
+        new PremierPlug_Custom_Post_Type_Manager();
         PPTM_Article_Relationships::init();
         PPTM_Article_Metaboxes::init();
         PPTM_Article_Shortcodes::init();
@@ -80,7 +80,6 @@ class PremierPlug_Talent_Management {
     public function activate() {
         PPTM_Post_Type::register();
         PPTM_Taxonomies::register();
-        PPTM_Article_Post_Types::register_post_types();
         PPTM_Article_Relationships::create_table();
         flush_rewrite_rules();
 
@@ -155,7 +154,18 @@ class PremierPlug_Talent_Management {
 
     public function enqueue_admin_assets($hook) {
         $screen = get_current_screen();
-        $article_types = array('talent', 'press_release', 'blog_article', 'award', 'news', 'media_coverage');
+
+        $manager = new PremierPlug_Custom_Post_Type_Manager();
+        $custom_types = $manager->get_custom_post_types();
+        $article_types = array('talent');
+
+        if (isset($custom_types['articles']['items'])) {
+            foreach ($custom_types['articles']['items'] as $type_data) {
+                if ($type_data['enabled']) {
+                    $article_types[] = 'article_' . $type_data['id'];
+                }
+            }
+        }
 
         if ($screen && in_array($screen->post_type, $article_types)) {
             wp_enqueue_style(

@@ -15,6 +15,25 @@ if (!defined('ABSPATH')) {
 class PPTM_Article_Queries {
 
     /**
+     * Get all article post types from custom post type manager
+     */
+    private static function get_all_article_post_types() {
+        $manager = new PremierPlug_Custom_Post_Type_Manager();
+        $custom_types = $manager->get_custom_post_types();
+        $article_types = array();
+
+        if (isset($custom_types['articles']['items'])) {
+            foreach ($custom_types['articles']['items'] as $type_data) {
+                if ($type_data['enabled']) {
+                    $article_types[] = 'article_' . $type_data['id'];
+                }
+            }
+        }
+
+        return !empty($article_types) ? $article_types : array('article_press_release');
+    }
+
+    /**
      * Get articles for a talent with filters
      *
      * @param int $talent_id Talent post ID
@@ -44,7 +63,7 @@ class PPTM_Article_Queries {
         $article_ids = wp_list_pluck($article_relationships, 'article_id');
 
         $query_args = array(
-            'post_type' => PPTM_Article_Post_Types::get_article_types(),
+            'post_type' => self::get_all_article_post_types(),
             'post__in' => $article_ids,
             'posts_per_page' => $args['posts_per_page'],
             'paged' => $args['paged'],
@@ -77,16 +96,9 @@ class PPTM_Article_Queries {
      * @return array Article counts by type
      */
     public static function get_talent_articles_count_by_type($talent_id) {
-        $counts = array(
-            'all' => 0,
-            'press_release' => 0,
-            'blog_article' => 0,
-            'award' => 0,
-            'news' => 0,
-            'media_coverage' => 0,
-        );
+        $counts = array('all' => 0);
 
-        $article_types = PPTM_Article_Post_Types::get_article_types();
+        $article_types = self::get_all_article_post_types();
 
         foreach ($article_types as $type) {
             $count = PPTM_Article_Relationships::get_talent_article_count($talent_id, $type);
@@ -113,7 +125,7 @@ class PPTM_Article_Queries {
         $args = wp_parse_args($args, $defaults);
 
         $query_args = array(
-            'post_type' => !empty($args['article_type']) ? $args['article_type'] : PPTM_Article_Post_Types::get_article_types(),
+            'post_type' => !empty($args['article_type']) ? $args['article_type'] : self::get_all_article_post_types(),
             'posts_per_page' => $args['posts_per_page'],
             'orderby' => 'date',
             'order' => 'DESC',
@@ -191,7 +203,7 @@ class PPTM_Article_Queries {
         $args = wp_parse_args($args, $defaults);
 
         $query_args = array(
-            'post_type' => !empty($args['article_type']) ? $args['article_type'] : PPTM_Article_Post_Types::get_article_types(),
+            'post_type' => !empty($args['article_type']) ? $args['article_type'] : self::get_all_article_post_types(),
             's' => sanitize_text_field($search_term),
             'posts_per_page' => $args['posts_per_page'],
             'paged' => $args['paged'],
@@ -214,7 +226,7 @@ class PPTM_Article_Queries {
             'with_talents' => 0,
         );
 
-        $article_types = PPTM_Article_Post_Types::get_article_types();
+        $article_types = self::get_all_article_post_types();
 
         foreach ($article_types as $type) {
             $count = wp_count_posts($type);
@@ -281,7 +293,7 @@ class PPTM_Article_Queries {
         }
 
         $args = array(
-            'post_type' => PPTM_Article_Post_Types::get_article_types(),
+            'post_type' => self::get_all_article_post_types(),
             'post__in' => $related_article_ids,
             'posts_per_page' => $limit,
             'post_status' => 'publish',
