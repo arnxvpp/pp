@@ -635,6 +635,16 @@ echo '<h2>Creating Navigation Menus</h2>';
 $primary_menu_id = wp_create_nav_menu('Primary Navigation');
 $footer_menu_id = wp_create_nav_menu('Footer Navigation');
 
+// Check if menus were created or already exist (WP_Error means already exists)
+if (is_wp_error($primary_menu_id)) {
+    $primary_menu = wp_get_nav_menu_object('Primary Navigation');
+    $primary_menu_id = $primary_menu ? $primary_menu->term_id : 0;
+}
+if (is_wp_error($footer_menu_id)) {
+    $footer_menu = wp_get_nav_menu_object('Footer Navigation');
+    $footer_menu_id = $footer_menu ? $footer_menu->term_id : 0;
+}
+
 if ($primary_menu_id && $footer_menu_id) {
     echo '<div class="status success">✓ Menus created successfully</div>';
 
@@ -653,15 +663,19 @@ if ($primary_menu_id && $footer_menu_id) {
                 // Find parent menu item
                 $parent_page_id = $created_pages[$page_data['parent']];
                 $menu_items = wp_get_nav_menu_items($primary_menu_id);
-                foreach ($menu_items as $item) {
-                    if ($item->object_id == $parent_page_id) {
-                        $parent_menu_id = $item->ID;
-                        break;
+
+                // Check if menu items were retrieved successfully
+                if ($menu_items && is_array($menu_items)) {
+                    foreach ($menu_items as $item) {
+                        if ($item->object_id == $parent_page_id) {
+                            $parent_menu_id = $item->ID;
+                            break;
+                        }
                     }
                 }
             }
 
-            wp_update_nav_menu_item($primary_menu_id, 0, array(
+            $result = wp_update_nav_menu_item($primary_menu_id, 0, array(
                 'menu-item-object-id' => $page_id,
                 'menu-item-object' => 'page',
                 'menu-item-parent-id' => $parent_menu_id,
@@ -669,19 +683,34 @@ if ($primary_menu_id && $footer_menu_id) {
                 'menu-item-status' => 'publish',
                 'menu-item-position' => $page_data['order']
             ));
+
+            // Suppress warnings by checking for errors
+            if (is_wp_error($result)) {
+                // Silently continue - menu item might already exist
+                continue;
+            }
         } elseif ($menu_location === 'footer') {
-            wp_update_nav_menu_item($footer_menu_id, 0, array(
+            $result = wp_update_nav_menu_item($footer_menu_id, 0, array(
                 'menu-item-object-id' => $page_id,
                 'menu-item-object' => 'page',
                 'menu-item-type' => 'post_type',
                 'menu-item-status' => 'publish',
                 'menu-item-position' => $page_data['order']
             ));
+
+            // Suppress warnings by checking for errors
+            if (is_wp_error($result)) {
+                // Silently continue - menu item might already exist
+                continue;
+            }
         }
     }
 
     // Assign menu locations
     $locations = get_theme_mod('nav_menu_locations');
+    if (!is_array($locations)) {
+        $locations = array();
+    }
     $locations['primary'] = $primary_menu_id;
     $locations['footer'] = $footer_menu_id;
     set_theme_mod('nav_menu_locations', $locations);
