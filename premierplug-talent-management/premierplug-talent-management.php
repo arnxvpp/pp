@@ -2,8 +2,8 @@
 /**
  * Plugin Name: PremierPlug Talent Management
  * Plugin URI: https://premierplug.org
- * Description: Complete talent management system with profiles, categories, search, and article management for PremierPlug agency. Now with dynamic custom post types!
- * Version: 1.3.0
+ * Description: Complete talent management + SEO + Monetization + Email Capture + Analytics. Everything you need to build a CAA-style media empire with WordPress.
+ * Version: 2.0.0
  * Author: PremierPlug Team
  * Author URI: https://premierplug.org
  * License: GPL v2 or later
@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('PPTM_VERSION', '1.3.0');
+define('PPTM_VERSION', '2.0.0');
 define('PPTM_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('PPTM_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('PPTM_PLUGIN_FILE', __FILE__);
@@ -51,6 +51,15 @@ class PremierPlug_Talent_Management {
         require_once PPTM_PLUGIN_DIR . 'includes/class-article-queries.php';
         require_once PPTM_PLUGIN_DIR . 'includes/class-article-shortcodes.php';
         require_once PPTM_PLUGIN_DIR . 'admin/class-articles-manager.php';
+
+        require_once PPTM_PLUGIN_DIR . 'includes/class-seo-manager.php';
+        require_once PPTM_PLUGIN_DIR . 'includes/class-ad-manager.php';
+        require_once PPTM_PLUGIN_DIR . 'includes/class-social-sharing.php';
+        require_once PPTM_PLUGIN_DIR . 'includes/class-related-articles.php';
+        require_once PPTM_PLUGIN_DIR . 'includes/class-analytics.php';
+        require_once PPTM_PLUGIN_DIR . 'includes/class-email-capture.php';
+        require_once PPTM_PLUGIN_DIR . 'includes/class-speed-optimizer.php';
+        require_once PPTM_PLUGIN_DIR . 'admin/class-settings.php';
     }
 
     private function init_hooks() {
@@ -75,19 +84,35 @@ class PremierPlug_Talent_Management {
         PPTM_Article_Metaboxes::init();
         PPTM_Article_Shortcodes::init();
         PPTM_Articles_Manager::init();
+
+        PPTM_SEO_Manager::init();
+        PPTM_Ad_Manager::init();
+        PPTM_Social_Sharing::init();
+        PPTM_Related_Articles::init();
+        PPTM_Analytics::init();
+        PPTM_Email_Capture::init();
+        PPTM_Speed_Optimizer::init();
+        PPTM_Settings::init();
+
+        add_action('add_meta_boxes', array('PPTM_Ad_Manager', 'add_disable_ads_metabox'));
+        add_action('save_post', array('PPTM_Ad_Manager', 'save_disable_ads_meta'));
     }
 
     public function activate() {
         PPTM_Post_Type::register();
         PPTM_Taxonomies::register();
         PPTM_Article_Relationships::create_table();
+        PPTM_Email_Capture::create_subscribers_table();
         flush_rewrite_rules();
 
         $this->create_default_categories();
+
+        set_transient('pptm_activation_notice', true, 30);
     }
 
     public function deactivate() {
         flush_rewrite_rules();
+        PPTM_Speed_Optimizer::remove_browser_caching();
     }
 
     private function create_default_categories() {

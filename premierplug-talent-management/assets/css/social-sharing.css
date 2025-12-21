@@ -1,0 +1,144 @@
+.pptm-share-buttons {
+    margin: 30px 0;
+    padding: 25px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    clear: both;
+}
+
+.pptm-share-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.pptm-share-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pptm-share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #333;
+}
+
+.pptm-share-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    color: #fff;
+    text-decoration: none;
+}
+
+.pptm-share-btn svg {
+    flex-shrink: 0;
+}
+
+.pptm-share-facebook {
+    background: #1877f2;
+}
+
+.pptm-share-facebook:hover {
+    background: #145dbf;
+}
+
+.pptm-share-twitter {
+    background: #1da1f2;
+}
+
+.pptm-share-twitter:hover {
+    background: #0c85d0;
+}
+
+.pptm-share-linkedin {
+    background: #0077b5;
+}
+
+.pptm-share-linkedin:hover {
+    background: #005e93;
+}
+
+.pptm-share-whatsapp {
+    background: #25d366;
+}
+
+.pptm-share-whatsapp:hover {
+    background: #1da851;
+}
+
+.pptm-share-email {
+    background: #666;
+}
+
+.pptm-share-email:hover {
+    background: #444;
+}
+
+.pptm-share-copy {
+    background: #555;
+}
+
+.pptm-share-copy:hover {
+    background: #333;
+}
+
+.pptm-share-copy.copied {
+    background: #28a745;
+}
+
+@media (max-width: 768px) {
+    .pptm-share-buttons {
+        padding: 20px 15px;
+    }
+
+    .pptm-share-buttons-container {
+        gap: 8px;
+    }
+
+    .pptm-share-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .pptm-share-btn span {
+        display: none;
+    }
+
+    .pptm-share-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pptm-share-buttons {
+        margin: 20px -15px;
+        border-radius: 0;
+    }
+
+    .pptm-share-buttons-container {
+        justify-content: center;
+    }
+
+    .pptm-share-btn {
+        padding: 10px;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+    }
+}
