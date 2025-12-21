@@ -18,10 +18,9 @@ premierplug/
 ├── sitemap.xml                         Site map
 │
 ├── 📦 packages/                        PRODUCTION FILES
-│   ├── premierplug-talent-management-v1.2.0.tar.gz (30KB)
-│   ├── premierplug-theme-v1.0.0.tar.gz (209KB)
-│   ├── premierplug-content-importer.php (21KB)
-│   └── premierplug-talent-management-STANDALONE.tar.gz
+│   ├── premierplug-talent-management-v1.2.0.zip (46KB)
+│   ├── premierplug-theme-v1.0.0.zip (220KB)
+│   └── premierplug-content-importer.php (21KB)
 │
 ├── 📚 docs/                            DOCUMENTATION
 │   ├── README.md
@@ -80,11 +79,11 @@ premierplug/
 
 | Package | Size | Purpose |
 |---------|------|---------|
-| `premierplug-talent-management-v1.2.0.tar.gz` | 30KB | WordPress Plugin |
-| `premierplug-theme-v1.0.0.tar.gz` | 209KB | WordPress Theme |
+| `premierplug-talent-management-v1.2.0.zip` | 46KB | WordPress Plugin |
+| `premierplug-theme-v1.0.0.zip` | 220KB | WordPress Theme |
 | `premierplug-content-importer.php` | 21KB | Content Migration |
 
-**Total Production Size:** 260KB (excluding theme images)
+**Total Production Size:** 287KB
 
 ---
 
@@ -120,8 +119,8 @@ premierplug/
 ### For WordPress Installation
 **Use these files:**
 ```
-packages/premierplug-talent-management-v1.2.0.tar.gz
-packages/premierplug-theme-v1.0.0.tar.gz
+packages/premierplug-talent-management-v1.2.0.zip
+packages/premierplug-theme-v1.0.0.zip
 ```
 
 **Read this first:**
@@ -187,8 +186,8 @@ docs/IMPORT-INSTRUCTIONS.md
 ### 1. Installation
 ```bash
 # Upload to WordPress:
-packages/premierplug-talent-management-v1.2.0.tar.gz
-packages/premierplug-theme-v1.0.0.tar.gz
+packages/premierplug-talent-management-v1.2.0.zip
+packages/premierplug-theme-v1.0.0.zip
 
 # Activate both
 ```
@@ -244,8 +243,8 @@ packages/premierplug-theme-v1.0.0.tar.gz
 → `docs/SIMPLE-INSTALLATION.md`
 
 ### "What files do I upload to WordPress?"
-→ `packages/premierplug-talent-management-v1.2.0.tar.gz`
-→ `packages/premierplug-theme-v1.0.0.tar.gz`
+→ `packages/premierplug-talent-management-v1.2.0.zip`
+→ `packages/premierplug-theme-v1.0.0.zip`
 
 ### "How do I customize the plugin?"
 → Edit: `premierplug-talent-management/`

@@ -4,9 +4,9 @@
 
 ### 1️⃣ Want to Install Right Now?
 **Read:** `docs/SIMPLE-INSTALLATION.md`
-**Upload:** 
-- `packages/premierplug-talent-management-v1.2.0.tar.gz`
-- `packages/premierplug-theme-v1.0.0.tar.gz`
+**Upload:**
+- `packages/premierplug-talent-management-v1.2.0.zip`
+- `packages/premierplug-theme-v1.0.0.zip`
 
 Takes 3 minutes. No configuration needed.
 

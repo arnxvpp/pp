@@ -32,11 +32,11 @@ Professional talent management and agency website solution for WordPress.
 ## 🚀 Quick Start
 
 ### Step 1: Install Theme
-1. Upload `premierplug-theme-v1.0.0.tar.gz` to WordPress
+1. Upload `premierplug-theme-v1.0.0.zip` to WordPress
 2. Activate theme
 
 ### Step 2: Install Plugin
-1. Upload `premierplug-talent-management-v1.2.0.tar.gz` to WordPress
+1. Upload `premierplug-talent-management-v1.2.0.zip` to WordPress
 2. Activate plugin
 3. Done! (No configuration needed)
 
@@ -54,8 +54,8 @@ premierplug/
 ├── README.md                          (This file)
 │
 ├── packages/                          (Ready to install)
-│   ├── premierplug-talent-management-v1.2.0.tar.gz
-│   ├── premierplug-theme-v1.0.0.tar.gz
+│   ├── premierplug-talent-management-v1.2.0.zip
+│   ├── premierplug-theme-v1.0.0.zip
 │   └── premierplug-content-importer.php
 │
 ├── premierplug-talent-management/     (Plugin source)
@@ -203,7 +203,7 @@ premierplug/
 ## 📦 Installation Packages
 
 ### Plugin Package
-**File:** `packages/premierplug-talent-management-v1.2.0.tar.gz`
+**File:** `packages/premierplug-talent-management-v1.2.0.zip`
 **Size:** ~30KB
 **Contains:** 38 files
 - Main plugin file
@@ -214,7 +214,7 @@ premierplug/
 - CSS and JavaScript assets
 
 ### Theme Package
-**File:** `packages/premierplug-theme-v1.0.0.tar.gz`
+**File:** `packages/premierplug-theme-v1.0.0.zip`
 **Size:** ~2MB (includes images)
 **Contains:**
 - Theme files
