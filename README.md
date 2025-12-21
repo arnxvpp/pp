@@ -25,11 +25,13 @@ Professional talent management and agency website solution for WordPress.
 - Fixed: Proper spacing and layout
 
 ### Content Importer
-**premierplug-content-importer.php v1.1**
+**premierplug-content-importer-v1.2-FIXED.php** (CSS Clean Version)
 - Import content from original HTML site
-- Preserves structure and styling
+- **FIXED: Strips Drupal CSS classes** (prevents CSS breaking)
+- Creates clean WordPress-compatible HTML
+- Removes inline styles and wrapper divs
 - One-click migration tool
-- Fixed: Improved error handling for WordPress menu creation
+- Updates existing pages safely
 
 ### Growth Features (v2.0)
 **7 Professional Growth Systems**
@@ -55,14 +57,23 @@ Professional talent management and agency website solution for WordPress.
 - ✅ Homepage set to "About Us"
 - ✅ All growth features active
 
-### CSS Fixed (v1.0.1)
+### ⚠️ IMPORTANT: Two Fixes Applied
+
+**Fix 1: CSS System (v1.0.1)**
 - ✅ Complete design system CSS (717KB)
 - ✅ All fonts loading properly
 - ✅ Responsive layout working
 - ✅ Professional appearance restored
 
+**Fix 2: Content Importer (v1.2-FIXED)**
+- ✅ Strips Drupal CSS classes from imported content
+- ✅ Prevents CSS breaking after import
+- ✅ Creates clean WordPress HTML
+- ✅ Can update already-imported pages
+
 See [IMPORT-SUCCESS-REPORT.md](IMPORT-SUCCESS-REPORT.md) for import details.
-See [CSS-FIX-REPORT.md](CSS-FIX-REPORT.md) for CSS fix details and installation instructions.
+See [CSS-FIX-REPORT.md](CSS-FIX-REPORT.md) for theme CSS fix details.
+See [CONTENT-IMPORT-FIX.md](CONTENT-IMPORT-FIX.md) for content importer fix details.
 
 ---
 
@@ -80,12 +91,25 @@ See [CSS-FIX-REPORT.md](CSS-FIX-REPORT.md) for CSS fix details and installation 
 2. Activate plugin
 3. Done! (No configuration needed)
 
-### Step 3: Add Content
+### Step 3: Import Content (FIXED VERSION)
+1. Upload `premierplug-content-importer-v1.2-FIXED.php` to WordPress root
+2. Visit: `https://your-site.com/premierplug-content-importer-v1.2-FIXED.php?key=premierplug_import_2024`
+3. Wait for completion
+4. Clear browser cache
+5. Delete import file for security
+
+**⚠️ CRITICAL**: Use the FIXED version (`v1.2-FIXED.php`), NOT the old `premierplug-content-importer.php`
+
+**Why?** The old importer imports Drupal CSS classes that break WordPress theme CSS. The fixed version strips these classes and creates clean HTML.
+
+### Step 4: Add More Content
 - Go to **Talent → Add New** to create profiles
 - Use article post types for content
 - Display with shortcodes
 
-**Need Help?** See [CSS-FIX-REPORT.md](CSS-FIX-REPORT.md) for detailed installation instructions.
+**Need Help?**
+- Theme CSS issues: [CSS-FIX-REPORT.md](CSS-FIX-REPORT.md)
+- Content import issues: [CONTENT-IMPORT-FIX.md](CONTENT-IMPORT-FIX.md)
 
 ---
 
@@ -97,8 +121,9 @@ premierplug/
 │
 ├── packages/                          (Ready to install)
 │   ├── premierplug-talent-management-v1.2.0.zip
-│   ├── premierplug-theme-v1.0.0.zip
-│   └── premierplug-content-importer.php
+│   ├── premierplug-theme-v1.0.1.zip  (CSS FIXED)
+│   ├── premierplug-content-importer-v1.2-FIXED.php (USE THIS ONE)
+│   └── premierplug-content-importer.php (OLD - DO NOT USE)
 │
 ├── premierplug-talent-management/     (Plugin source)
 │   ├── premierplug-talent-management.php
