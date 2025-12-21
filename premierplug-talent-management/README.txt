@@ -3,7 +3,7 @@ Contributors: PremierPlug Team
 Tags: talent, portfolio, management, agency, roster
 Requires at least: 6.0
 Tested up to: 6.4
-Stable tag: 1.0.0
+Stable tag: 1.2.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -23,11 +23,13 @@ PremierPlug Talent Management is a comprehensive plugin for managing talent rost
 * Contact information management
 * Professional details (experience, rates)
 * Social media integration
-* Supabase database sync
+* Article management system (press releases, blog posts, awards, news, media coverage)
+* Talent-article relationships
 * AJAX-powered search and filtering
 * Multiple display options (grid, list, single)
 * Responsive design
-* 4 powerful shortcodes
+* Powerful shortcodes
+* 100% WordPress-native (no external dependencies)
 
 **Shortcodes:**
 
@@ -35,13 +37,19 @@ PremierPlug Talent Management is a comprehensive plugin for managing talent rost
 * `[talent_list]` - Display talents in list layout
 * `[talent_single id="123"]` - Display single talent profile
 * `[talent_search]` - Display search form with live results
+* `[talent_articles]` - Display articles for specific talent
+* `[article_grid]` - Display article grid
+* `[article_list]` - Display article list
 
 == Installation ==
 
 1. Upload `premierplug-talent-management` folder to `/wp-content/plugins/`
 2. Activate the plugin through the 'Plugins' menu
-3. Go to Talents → Settings to configure
-4. Start adding talents!
+3. Default categories are created automatically
+4. Start adding talents and articles!
+5. Use shortcodes to display content on your pages
+
+No external services or configuration needed!
 
 == Frequently Asked Questions ==
 
@@ -52,9 +60,9 @@ Use shortcodes:
 - List: `[talent_list category="speakers"]`
 - Search: `[talent_search]`
 
-= Does this work with Supabase? =
+= Do I need any external services? =
 
-Yes! The plugin automatically syncs all talent data to Supabase when configured.
+No! Everything is stored in your WordPress database. No external services, APIs, or accounts needed.
 
 = Can I customize the templates? =
 
@@ -70,17 +78,30 @@ Yes! Copy templates from plugin folder to your theme's `premierplug-talent-manag
 
 == Changelog ==
 
+= 1.2.0 =
+* Removed all external dependencies
+* Pure WordPress implementation
+* Everything stored in WordPress database
+* Improved performance and reliability
+* Simplified installation
+* Enhanced documentation
+
+= 1.1.0 =
+* Added article management system
+* Added talent-article relationships
+* Added 5 article post types
+* Added featured articles
+* Added article shortcodes
+
 = 1.0.0 =
 * Initial release
 * Custom post type for talents
 * Categories and skills taxonomies
-* Supabase integration
 * Search and filter functionality
 * Multiple display templates
-* 4 shortcodes
 * Admin interface
 
 == Upgrade Notice ==
 
-= 1.0.0 =
-Initial release
+= 1.2.0 =
+This version removes external dependencies. All data remains safely in your WordPress database.

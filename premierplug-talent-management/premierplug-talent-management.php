@@ -2,8 +2,8 @@
 /**
  * Plugin Name: PremierPlug Talent Management
  * Plugin URI: https://premierplug.org
- * Description: Complete talent management system with profiles, categories, search, article management, and Supabase integration for PremierPlug agency.
- * Version: 1.1.0
+ * Description: Complete talent management system with profiles, categories, search, and article management for PremierPlug agency.
+ * Version: 1.2.0
  * Author: PremierPlug Team
  * Author URI: https://premierplug.org
  * License: GPL v2 or later
@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('PPTM_VERSION', '1.1.0');
+define('PPTM_VERSION', '1.2.0');
 define('PPTM_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('PPTM_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('PPTM_PLUGIN_FILE', __FILE__);
@@ -40,7 +40,6 @@ class PremierPlug_Talent_Management {
     private function load_dependencies() {
         require_once PPTM_PLUGIN_DIR . 'includes/class-post-type.php';
         require_once PPTM_PLUGIN_DIR . 'includes/class-taxonomies.php';
-        require_once PPTM_PLUGIN_DIR . 'includes/class-supabase.php';
         require_once PPTM_PLUGIN_DIR . 'includes/class-metaboxes.php';
         require_once PPTM_PLUGIN_DIR . 'includes/class-shortcodes.php';
         require_once PPTM_PLUGIN_DIR . 'admin/class-admin.php';
@@ -49,7 +48,6 @@ class PremierPlug_Talent_Management {
         require_once PPTM_PLUGIN_DIR . 'includes/class-article-post-types.php';
         require_once PPTM_PLUGIN_DIR . 'includes/class-article-relationships.php';
         require_once PPTM_PLUGIN_DIR . 'includes/class-article-metaboxes.php';
-        require_once PPTM_PLUGIN_DIR . 'includes/class-article-supabase.php';
         require_once PPTM_PLUGIN_DIR . 'includes/class-article-queries.php';
         require_once PPTM_PLUGIN_DIR . 'includes/class-article-shortcodes.php';
         require_once PPTM_PLUGIN_DIR . 'admin/class-articles-manager.php';
@@ -75,7 +73,6 @@ class PremierPlug_Talent_Management {
         PPTM_Article_Post_Types::init();
         PPTM_Article_Relationships::init();
         PPTM_Article_Metaboxes::init();
-        PPTM_Article_Supabase::init();
         PPTM_Article_Shortcodes::init();
         PPTM_Articles_Manager::init();
     }
