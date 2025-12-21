@@ -2,8 +2,8 @@
 /**
  * Plugin Name: PremierPlug Talent Management
  * Plugin URI: https://premierplug.org
- * Description: Complete talent management system with profiles, categories, search, and Supabase integration for PremierPlug agency.
- * Version: 1.0.0
+ * Description: Complete talent management system with profiles, categories, search, article management, and Supabase integration for PremierPlug agency.
+ * Version: 1.1.0
  * Author: PremierPlug Team
  * Author URI: https://premierplug.org
  * License: GPL v2 or later
@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('PPTM_VERSION', '1.0.0');
+define('PPTM_VERSION', '1.1.0');
 define('PPTM_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('PPTM_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('PPTM_PLUGIN_FILE', __FILE__);
@@ -45,6 +45,14 @@ class PremierPlug_Talent_Management {
         require_once PPTM_PLUGIN_DIR . 'includes/class-shortcodes.php';
         require_once PPTM_PLUGIN_DIR . 'admin/class-admin.php';
         require_once PPTM_PLUGIN_DIR . 'public/class-public.php';
+
+        require_once PPTM_PLUGIN_DIR . 'includes/class-article-post-types.php';
+        require_once PPTM_PLUGIN_DIR . 'includes/class-article-relationships.php';
+        require_once PPTM_PLUGIN_DIR . 'includes/class-article-metaboxes.php';
+        require_once PPTM_PLUGIN_DIR . 'includes/class-article-supabase.php';
+        require_once PPTM_PLUGIN_DIR . 'includes/class-article-queries.php';
+        require_once PPTM_PLUGIN_DIR . 'includes/class-article-shortcodes.php';
+        require_once PPTM_PLUGIN_DIR . 'admin/class-articles-manager.php';
     }
 
     private function init_hooks() {
@@ -63,11 +71,20 @@ class PremierPlug_Talent_Management {
         PPTM_Shortcodes::init();
         PPTM_Admin::init();
         PPTM_Public::init();
+
+        PPTM_Article_Post_Types::init();
+        PPTM_Article_Relationships::init();
+        PPTM_Article_Metaboxes::init();
+        PPTM_Article_Supabase::init();
+        PPTM_Article_Shortcodes::init();
+        PPTM_Articles_Manager::init();
     }
 
     public function activate() {
         PPTM_Post_Type::register();
         PPTM_Taxonomies::register();
+        PPTM_Article_Post_Types::register_post_types();
+        PPTM_Article_Relationships::create_table();
         flush_rewrite_rules();
 
         $this->create_default_categories();
@@ -105,6 +122,13 @@ class PremierPlug_Talent_Management {
             PPTM_VERSION
         );
 
+        wp_enqueue_style(
+            'pptm-articles',
+            PPTM_PLUGIN_URL . 'assets/css/articles.css',
+            array('pptm-public'),
+            PPTM_VERSION
+        );
+
         wp_enqueue_script(
             'pptm-public',
             PPTM_PLUGIN_URL . 'assets/js/public.js',
@@ -113,15 +137,30 @@ class PremierPlug_Talent_Management {
             true
         );
 
+        wp_enqueue_script(
+            'pptm-articles',
+            PPTM_PLUGIN_URL . 'assets/js/article-frontend.js',
+            array('jquery', 'pptm-public'),
+            PPTM_VERSION,
+            true
+        );
+
         wp_localize_script('pptm-public', 'pptmData', array(
             'ajaxurl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('pptm_nonce')
+        ));
+
+        wp_localize_script('pptm-articles', 'pptm_ajax', array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('pptm_articles_nonce')
         ));
     }
 
     public function enqueue_admin_assets($hook) {
         $screen = get_current_screen();
-        if ($screen && $screen->post_type === 'talent') {
+        $article_types = array('talent', 'press_release', 'blog_article', 'award', 'news', 'media_coverage');
+
+        if ($screen && in_array($screen->post_type, $article_types)) {
             wp_enqueue_style(
                 'pptm-admin',
                 PPTM_PLUGIN_URL . 'assets/css/admin.css',
