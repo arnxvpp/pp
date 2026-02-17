@@ -93,9 +93,6 @@ class PremierPlug_Talent_Management {
         PPTM_Email_Capture::init();
         PPTM_Speed_Optimizer::init();
         PPTM_Settings::init();
-
-        add_action('add_meta_boxes', array('PPTM_Ad_Manager', 'add_disable_ads_metabox'));
-        add_action('save_post', array('PPTM_Ad_Manager', 'save_disable_ads_meta'));
     }
 
     public function activate() {
@@ -180,8 +177,7 @@ class PremierPlug_Talent_Management {
     public function enqueue_admin_assets($hook) {
         $screen = get_current_screen();
 
-        $manager = new PremierPlug_Custom_Post_Type_Manager();
-        $custom_types = $manager->get_custom_post_types();
+        $custom_types = get_option('premierplug_custom_post_types', array());
         $article_types = array('talent');
 
         if (isset($custom_types['articles']['items'])) {

@@ -184,7 +184,7 @@ class PPTM_Related_Articles {
                                     <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
                                         <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
                                     </svg>
-                                    <?php echo human_time_diff(get_the_time('U', $related_post->ID), current_time('timestamp')) . ' ago'; ?>
+                                    <?php echo esc_html(human_time_diff(get_the_time('U', $related_post->ID), current_time('timestamp')) . ' ago'); ?>
                                 </span>
                                 <?php
                                 $views = get_post_meta($related_post->ID, '_pptm_views', true);
@@ -195,7 +195,7 @@ class PPTM_Related_Articles {
                                             <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
                                             <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
                                         </svg>
-                                        <?php echo number_format($views); ?>
+                                        <?php echo esc_html(number_format(intval($views))); ?>
                                     </span>
                                 <?php endif; ?>
                             </div>
@@ -251,7 +251,7 @@ class PPTM_Related_Articles {
     private static function get_by_linked_talent($post_id, $count) {
         global $wpdb;
 
-        $table_name = $wpdb->prefix . 'pptm_article_relationships';
+        $table_name = $wpdb->prefix . 'talent_article_relationships';
 
         $talent_ids = $wpdb->get_col($wpdb->prepare(
             "SELECT talent_id FROM {$table_name} WHERE article_id = %d",
@@ -338,21 +338,22 @@ class PPTM_Related_Articles {
     }
 
     public static function track_view($post_id) {
-        if (!is_singular()) {
+        if (!is_singular() || is_admin() || current_user_can('manage_options')) {
             return;
         }
+
+        $cookie_key = 'pptm_viewed_' . $post_id;
+        if (isset($_COOKIE[$cookie_key])) {
+            return;
+        }
+
+        setcookie($cookie_key, '1', time() + 3600, COOKIEPATH, COOKIE_DOMAIN);
 
         $views = get_post_meta($post_id, '_pptm_views', true);
         $views = $views ? intval($views) : 0;
         $views++;
 
         update_post_meta($post_id, '_pptm_views', $views);
-
-        $viewed_today = get_post_meta($post_id, '_pptm_views_today_' . date('Y-m-d'), true);
-        $viewed_today = $viewed_today ? intval($viewed_today) : 0;
-        $viewed_today++;
-
-        update_post_meta($post_id, '_pptm_views_today_' . date('Y-m-d'), $viewed_today);
     }
 }
 

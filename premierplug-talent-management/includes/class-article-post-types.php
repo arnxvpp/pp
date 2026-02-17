@@ -314,6 +314,10 @@ class PPTM_Article_Post_Types {
     public static function custom_post_messages($messages) {
         global $post;
 
+        if (!$post) {
+            return $messages;
+        }
+
         $article_types = array(
             'press_release' => 'Press Release',
             'blog_article' => 'Blog Article',
@@ -322,19 +326,23 @@ class PPTM_Article_Post_Types {
             'media_coverage' => 'Media Coverage',
         );
 
+        $permalink = get_permalink($post->ID);
+        $preview_url = add_query_arg('preview', 'true', $permalink);
+        $post_date = date_i18n(__('M j, Y @ G:i', 'premierplug-talent'), strtotime($post->post_date));
+
         foreach ($article_types as $type => $label) {
             $messages[$type] = array(
                 0  => '',
-                1  => sprintf(__('%s updated. <a href="%s">View %s</a>', 'premierplug-talent'), $label, esc_url(get_permalink($post->ID)), $label),
+                1  => sprintf(__('%1$s updated. <a href="%2$s">View %1$s</a>', 'premierplug-talent'), $label, esc_url($permalink)),
                 2  => __('Custom field updated.', 'premierplug-talent'),
                 3  => __('Custom field deleted.', 'premierplug-talent'),
                 4  => sprintf(__('%s updated.', 'premierplug-talent'), $label),
                 5  => isset($_GET['revision']) ? sprintf(__('%s restored to revision from %s', 'premierplug-talent'), $label, wp_post_revision_title((int) $_GET['revision'], false)) : false,
-                6  => sprintf(__('%s published. <a href="%s">View %s</a>', 'premierplug-talent'), $label, esc_url(get_permalink($post->ID)), $label),
+                6  => sprintf(__('%1$s published. <a href="%2$s">View %1$s</a>', 'premierplug-talent'), $label, esc_url($permalink)),
                 7  => sprintf(__('%s saved.', 'premierplug-talent'), $label),
-                8  => sprintf(__('%s submitted. <a target="_blank" href="%s">Preview %s</a>', 'premierplug-talent'), $label, esc_url(add_query_arg('preview', 'true', get_permalink($post->ID))), $label),
-                9  => sprintf(__('%s scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview %s</a>', 'premierplug-talent'), $label, date_i18n(__('M j, Y @ G:i', 'premierplug-talent'), strtotime($post->post_date)), esc_url(get_permalink($post->ID)), $label),
-                10 => sprintf(__('%s draft updated. <a target="_blank" href="%s">Preview %s</a>', 'premierplug-talent'), $label, esc_url(add_query_arg('preview', 'true', get_permalink($post->ID))), $label),
+                8  => sprintf(__('%1$s submitted. <a target="_blank" href="%2$s">Preview %1$s</a>', 'premierplug-talent'), $label, esc_url($preview_url)),
+                9  => sprintf(__('%1$s scheduled for: <strong>%2$s</strong>. <a target="_blank" href="%3$s">Preview %1$s</a>', 'premierplug-talent'), $label, $post_date, esc_url($permalink)),
+                10 => sprintf(__('%1$s draft updated. <a target="_blank" href="%2$s">Preview %1$s</a>', 'premierplug-talent'), $label, esc_url($preview_url)),
             );
         }
 

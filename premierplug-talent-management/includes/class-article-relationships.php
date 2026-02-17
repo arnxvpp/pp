@@ -136,9 +136,14 @@ class PPTM_Article_Relationships {
 
         $args = wp_parse_args($args, $defaults);
 
+        $allowed_orderby = array('display_order', 'is_primary_talent', 'created_at');
+        $allowed_order = array('ASC', 'DESC');
+        $orderby = in_array($args['orderby'], $allowed_orderby, true) ? $args['orderby'] : 'display_order';
+        $order = in_array(strtoupper($args['order']), $allowed_order, true) ? strtoupper($args['order']) : 'ASC';
+
         $order_clause = $args['primary_first']
             ? 'ORDER BY is_primary_talent DESC, display_order ASC'
-            : "ORDER BY {$args['orderby']} {$args['order']}";
+            : "ORDER BY {$orderby} {$order}";
 
         $query = $wpdb->prepare(
             "SELECT talent_id, is_primary_talent, display_order
@@ -171,6 +176,11 @@ class PPTM_Article_Relationships {
 
         $args = wp_parse_args($args, $defaults);
 
+        $allowed_orderby = array('display_order', 'is_primary_talent', 'created_at');
+        $allowed_order = array('ASC', 'DESC');
+        $orderby = in_array($args['orderby'], $allowed_orderby, true) ? $args['orderby'] : 'created_at';
+        $order = in_array(strtoupper($args['order']), $allowed_order, true) ? strtoupper($args['order']) : 'DESC';
+
         $where_clause = $wpdb->prepare('WHERE r.talent_id = %d', $talent_id);
 
         if (!empty($args['article_type'])) {
@@ -187,7 +197,7 @@ class PPTM_Article_Relationships {
                   INNER JOIN {$wpdb->posts} p ON r.article_id = p.ID
                   $where_clause
                   AND p.post_status = 'publish'
-                  ORDER BY r.{$args['orderby']} {$args['order']}
+                  ORDER BY r.{$orderby} {$order}
                   $limit_clause";
 
         return $wpdb->get_results($query, ARRAY_A);

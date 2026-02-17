@@ -182,7 +182,9 @@ class PPTM_Social_Sharing {
         }
 
         $share_counts[$network]++;
-        $share_counts['total'] = array_sum(array_filter($share_counts, 'is_numeric'));
+        $network_counts = $share_counts;
+        unset($network_counts['total']);
+        $share_counts['total'] = array_sum($network_counts);
 
         update_post_meta($post_id, '_pptm_share_counts', $share_counts);
 
