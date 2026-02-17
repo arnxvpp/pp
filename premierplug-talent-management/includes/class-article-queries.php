@@ -18,13 +18,12 @@ class PPTM_Article_Queries {
      * Get all article post types from custom post type manager
      */
     private static function get_all_article_post_types() {
-        $manager = new PremierPlug_Custom_Post_Type_Manager();
-        $custom_types = $manager->get_custom_post_types();
+        $custom_types = get_option('premierplug_custom_post_types', array());
         $article_types = array();
 
         if (isset($custom_types['articles']['items'])) {
             foreach ($custom_types['articles']['items'] as $type_data) {
-                if ($type_data['enabled']) {
+                if (!empty($type_data['enabled'])) {
                     $article_types[] = 'article_' . $type_data['id'];
                 }
             }
@@ -276,16 +275,18 @@ class PPTM_Article_Queries {
         global $wpdb;
         $table_name = $wpdb->prefix . 'talent_article_relationships';
 
-        $talent_ids_string = implode(',', array_map('intval', $talent_ids));
+        $talent_ids = array_map('intval', $talent_ids);
+        $placeholders = implode(',', array_fill(0, count($talent_ids), '%d'));
+
+        $query_args = array_merge($talent_ids, array($article_id, $limit));
 
         $related_article_ids = $wpdb->get_col($wpdb->prepare(
             "SELECT DISTINCT article_id
             FROM $table_name
-            WHERE talent_id IN ($talent_ids_string)
+            WHERE talent_id IN ($placeholders)
             AND article_id != %d
             LIMIT %d",
-            $article_id,
-            $limit
+            $query_args
         ));
 
         if (empty($related_article_ids)) {

@@ -14,6 +14,9 @@ class PPTM_Ad_Manager {
         add_action('dynamic_sidebar_after', array(__CLASS__, 'output_sidebar_ad_bottom'));
         add_shortcode('pptm_ad', array(__CLASS__, 'ad_shortcode'));
         add_action('wp_enqueue_scripts', array(__CLASS__, 'enqueue_ad_styles'));
+        add_action('wp_footer', array(__CLASS__, 'output_mobile_sticky_ad'));
+        add_action('add_meta_boxes', array(__CLASS__, 'add_disable_ads_metabox'));
+        add_action('save_post', array(__CLASS__, 'save_disable_ads_meta'));
     }
 
     public static function enqueue_ad_styles() {
@@ -156,25 +159,29 @@ class PPTM_Ad_Manager {
         $paragraph_after = get_option('pptm_in_content_ad_position', 3);
 
         $paragraphs = explode('</p>', $content);
+        $last_index = count($paragraphs) - 1;
         $ad_inserted = false;
+        $output = '';
 
         foreach ($paragraphs as $index => $paragraph) {
-            if ($index === intval($paragraph_after) && !$ad_inserted) {
-                $ad_html = '<div class="pptm-ad-zone in-content-ad">';
-                $ad_html .= '<div class="pptm-ad-label">Advertisement</div>';
-                $ad_html .= '<div class="pptm-ad-container">';
-                $ad_html .= self::process_ad_code($in_content_ad);
-                $ad_html .= '</div>';
-                $ad_html .= '</div>';
+            if ($index === $last_index && trim($paragraph) === '') {
+                continue;
+            }
 
-                $paragraphs[$index] .= '</p>' . $ad_html;
+            $output .= $paragraph . '</p>';
+
+            if ($index === intval($paragraph_after) - 1 && !$ad_inserted) {
+                $output .= '<div class="pptm-ad-zone in-content-ad">';
+                $output .= '<div class="pptm-ad-label">Advertisement</div>';
+                $output .= '<div class="pptm-ad-container">';
+                $output .= self::process_ad_code($in_content_ad);
+                $output .= '</div>';
+                $output .= '</div>';
                 $ad_inserted = true;
-            } else {
-                $paragraphs[$index] .= '</p>';
             }
         }
 
-        return implode('', $paragraphs);
+        return $output;
     }
 
     public static function output_mobile_sticky_ad() {
@@ -237,11 +244,7 @@ class PPTM_Ad_Manager {
     }
 
     private static function process_ad_code($ad_code) {
-        $ad_code = stripslashes($ad_code);
-
-        $ad_code = str_replace(array('&lt;', '&gt;', '&quot;'), array('<', '>', '"'), $ad_code);
-
-        return $ad_code;
+        return stripslashes($ad_code);
     }
 
     public static function add_disable_ads_metabox() {

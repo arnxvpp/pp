@@ -103,7 +103,11 @@ class PPTM_Settings {
             wp_die('Unauthorized');
         }
 
-        $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'seo';
+        $allowed_tabs = array('seo', 'monetization', 'sharing', 'related', 'analytics', 'email', 'performance');
+        $active_tab = isset($_GET['tab']) ? sanitize_key($_GET['tab']) : 'seo';
+        if (!in_array($active_tab, $allowed_tabs, true)) {
+            $active_tab = 'seo';
+        }
         ?>
         <div class="wrap pptm-settings-wrap">
             <h1>Growth & Monetization Settings</h1>
@@ -142,6 +146,9 @@ class PPTM_Settings {
                         break;
                     case 'performance':
                         self::render_performance_tab();
+                        break;
+                    default:
+                        self::render_seo_tab();
                         break;
                 }
                 ?>

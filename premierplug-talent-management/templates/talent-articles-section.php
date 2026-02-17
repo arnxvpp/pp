@@ -29,40 +29,17 @@ if ($article_counts['all'] === 0) {
             <span class="pptm-tab-count"><?php echo esc_html($article_counts['all']); ?></span>
         </button>
 
-        <?php if ($article_counts['press_release'] > 0) : ?>
-            <button class="pptm-tab-btn" data-type="press_release">
-                <?php esc_html_e('Press Releases', 'premierplug-talent'); ?>
-                <span class="pptm-tab-count"><?php echo esc_html($article_counts['press_release']); ?></span>
+        <?php
+        foreach ($article_counts as $type_key => $count) :
+            if ($type_key === 'all' || $count <= 0) continue;
+            $type_obj = get_post_type_object($type_key);
+            if (!$type_obj) continue;
+        ?>
+            <button class="pptm-tab-btn" data-type="<?php echo esc_attr($type_key); ?>">
+                <?php echo esc_html($type_obj->labels->name); ?>
+                <span class="pptm-tab-count"><?php echo esc_html($count); ?></span>
             </button>
-        <?php endif; ?>
-
-        <?php if ($article_counts['blog_article'] > 0) : ?>
-            <button class="pptm-tab-btn" data-type="blog_article">
-                <?php esc_html_e('Blog', 'premierplug-talent'); ?>
-                <span class="pptm-tab-count"><?php echo esc_html($article_counts['blog_article']); ?></span>
-            </button>
-        <?php endif; ?>
-
-        <?php if ($article_counts['award'] > 0) : ?>
-            <button class="pptm-tab-btn" data-type="award">
-                <?php esc_html_e('Awards', 'premierplug-talent'); ?>
-                <span class="pptm-tab-count"><?php echo esc_html($article_counts['award']); ?></span>
-            </button>
-        <?php endif; ?>
-
-        <?php if ($article_counts['news'] > 0) : ?>
-            <button class="pptm-tab-btn" data-type="news">
-                <?php esc_html_e('News', 'premierplug-talent'); ?>
-                <span class="pptm-tab-count"><?php echo esc_html($article_counts['news']); ?></span>
-            </button>
-        <?php endif; ?>
-
-        <?php if ($article_counts['media_coverage'] > 0) : ?>
-            <button class="pptm-tab-btn" data-type="media_coverage">
-                <?php esc_html_e('Media Coverage', 'premierplug-talent'); ?>
-                <span class="pptm-tab-count"><?php echo esc_html($article_counts['media_coverage']); ?></span>
-            </button>
-        <?php endif; ?>
+        <?php endforeach; ?>
     </div>
 
     <div class="pptm-articles-grid-container">

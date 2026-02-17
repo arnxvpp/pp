@@ -32,13 +32,12 @@ class PPTM_Article_Metaboxes {
      * Get all article post types from custom post type manager
      */
     private static function get_all_article_post_types() {
-        $manager = new PremierPlug_Custom_Post_Type_Manager();
-        $custom_types = $manager->get_custom_post_types();
+        $custom_types = get_option('premierplug_custom_post_types', array());
         $article_types = array();
 
         if (isset($custom_types['articles']['items'])) {
             foreach ($custom_types['articles']['items'] as $type_data) {
-                if ($type_data['enabled']) {
+                if (!empty($type_data['enabled'])) {
                     $article_types[] = 'article_' . $type_data['id'];
                 }
             }
@@ -343,7 +342,10 @@ class PPTM_Article_Metaboxes {
                     </thead>
                     <tbody>
                         <?php foreach ($articles as $article) : ?>
-                            <?php $article_post = get_post($article['article_id']); ?>
+                            <?php
+                            $article_post = get_post($article['article_id']);
+                            if (!$article_post) continue;
+                            ?>
                             <tr>
                                 <td>
                                     <strong><?php echo esc_html($article_post->post_title); ?></strong>
@@ -546,6 +548,12 @@ class PPTM_Article_Metaboxes {
      * AJAX search talents
      */
     public static function ajax_search_talents() {
+        check_ajax_referer('pptm_save_article_talents', 'nonce');
+
+        if (!current_user_can('edit_posts')) {
+            wp_send_json_error();
+        }
+
         $search = isset($_POST['search']) ? sanitize_text_field($_POST['search']) : '';
 
         if (empty($search)) {

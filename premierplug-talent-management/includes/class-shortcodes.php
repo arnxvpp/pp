@@ -120,7 +120,7 @@ class PPTM_Shortcodes {
 
         $post = get_post($post_id);
 
-        if (!$post || $post->post_type !== 'talent') {
+        if (!$post || $post->post_type !== 'talent' || $post->post_status !== 'publish') {
             return '<p>' . __('Talent not found.', 'premierplug-talent') . '</p>';
         }
 

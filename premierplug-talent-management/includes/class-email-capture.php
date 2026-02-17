@@ -160,7 +160,7 @@ class PPTM_Email_Capture {
                 'status' => 'active',
                 'subscribed_at' => current_time('mysql'),
                 'ip_address' => self::get_client_ip(),
-                'user_agent' => substr($_SERVER['HTTP_USER_AGENT'], 0, 255),
+                'user_agent' => isset($_SERVER['HTTP_USER_AGENT']) ? substr(sanitize_text_field(wp_unslash($_SERVER['HTTP_USER_AGENT'])), 0, 255) : '',
             ),
             array('%s', '%s', '%s', '%s', '%s')
         );
@@ -192,17 +192,9 @@ class PPTM_Email_Capture {
     }
 
     private static function get_client_ip() {
-        $ip = '';
+        $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
 
-        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-            $ip = $_SERVER['HTTP_CLIENT_IP'];
-        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        } else {
-            $ip = $_SERVER['REMOTE_ADDR'];
-        }
-
-        return sanitize_text_field($ip);
+        return filter_var($ip, FILTER_VALIDATE_IP) ? sanitize_text_field($ip) : '';
     }
 
     public static function create_subscribers_table() {

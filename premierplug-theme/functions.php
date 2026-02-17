@@ -97,11 +97,11 @@ function premierplug_enqueue_scripts() {
     wp_enqueue_script('jquery');
 
     wp_enqueue_script(
-        'lodash',
+        'premierplug-lodash',
         'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js',
         array(),
         '4.17.21',
-        false
+        true
     );
 
     wp_enqueue_script(
@@ -109,13 +109,13 @@ function premierplug_enqueue_scripts() {
         PREMIERPLUG_THEME_URI . '/assets/js/vendor.js',
         array('jquery'),
         PREMIERPLUG_VERSION,
-        false
+        true
     );
 
     wp_enqueue_script(
         'premierplug-main',
         PREMIERPLUG_THEME_URI . '/assets/js/main.js',
-        array('jquery', 'lodash', 'premierplug-vendor'),
+        array('jquery', 'premierplug-lodash', 'premierplug-vendor'),
         PREMIERPLUG_VERSION,
         true
     );
@@ -123,10 +123,25 @@ function premierplug_enqueue_scripts() {
     wp_enqueue_script(
         'premierplug-custom',
         PREMIERPLUG_THEME_URI . '/assets/js/custom.js',
-        array('jquery', 'lodash', 'premierplug-main'),
+        array('jquery', 'premierplug-lodash', 'premierplug-main'),
         PREMIERPLUG_VERSION,
         true
     );
+
+    wp_add_inline_script('premierplug-main', '
+        if (typeof Modernizr === "undefined") {
+            window.Modernizr = { mq: function(q) { return window.matchMedia(q).matches; } };
+        }
+        if (typeof Hammer === "undefined") {
+            window.Hammer = function(el) { this.on = function() { return this; }; };
+        }
+        if (typeof jQuery !== "undefined" && !jQuery.fn.velocity) {
+            jQuery.fn.velocity = function(props, opts) { return this.animate(props, opts); };
+        }
+        if (typeof jQuery !== "undefined" && !jQuery.fn.hoverIntent) {
+            jQuery.fn.hoverIntent = function(over, out) { return this.on("mouseenter", over).on("mouseleave", out); };
+        }
+    ', 'after');
 
     wp_enqueue_script(
         'premierplug-navigation',
@@ -148,12 +163,15 @@ class PremierPlug_Walker_Nav_Menu extends Walker_Nav_Menu {
     }
 
     function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
+        $args = (object) $args;
         $indent = ($depth) ? str_repeat("\t", $depth) : '';
 
         $classes = empty($item->classes) ? array() : (array) $item->classes;
         $classes[] = 'menu-item-' . $item->ID;
 
-        if ($args->walker->has_children) {
+        $has_children = !empty($args->walker) && $args->walker->has_children;
+
+        if ($has_children) {
             $classes[] = 'menu-item-has-children';
         }
 
@@ -167,22 +185,19 @@ class PremierPlug_Walker_Nav_Menu extends Walker_Nav_Menu {
         $atts['target'] = !empty($item->target) ? $item->target : '_self';
         $atts['rel']    = !empty($item->xfn) ? $item->xfn : '';
 
-        // Set href and class based on whether item has children
-        if ($args->walker->has_children) {
-            // Parent items with children should NOT be clickable - they expand
-            $atts['href'] = 'javascript:void(0);';
-            $atts['class'] = ''; // No linkTo class for parents
+        if ($has_children) {
+            $atts['href'] = '#';
+            $atts['class'] = '';
         } else {
-            // Actual page links should be clickable
             $atts['href'] = !empty($item->url) ? $item->url : '#';
-            $atts['class'] = 'linkTo'; // Add linkTo class for actual links
+            $atts['class'] = 'linkTo';
         }
 
         $atts = apply_filters('nav_menu_link_attributes', $atts, $item, $args, $depth);
 
         $attributes = '';
         foreach ($atts as $attr => $value) {
-            if (!empty($value)) {
+            if ($attr === 'href' || !empty($value)) {
                 $value = ('href' === $attr) ? esc_url($value) : esc_attr($value);
                 $attributes .= ' ' . $attr . '="' . $value . '"';
             }
@@ -191,11 +206,16 @@ class PremierPlug_Walker_Nav_Menu extends Walker_Nav_Menu {
         $title = apply_filters('the_title', $item->title, $item->ID);
         $title = apply_filters('nav_menu_item_title', $title, $item, $args, $depth);
 
-        $item_output = $args->before;
+        $before = isset($args->before) ? $args->before : '';
+        $after = isset($args->after) ? $args->after : '';
+        $link_before = isset($args->link_before) ? $args->link_before : '';
+        $link_after = isset($args->link_after) ? $args->link_after : '';
+
+        $item_output = $before;
         $item_output .= '<a' . $attributes . '>';
-        $item_output .= $args->link_before . $title . $args->link_after;
+        $item_output .= $link_before . $title . $link_after;
         $item_output .= '</a>';
-        $item_output .= $args->after;
+        $item_output .= $after;
 
         $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
     }

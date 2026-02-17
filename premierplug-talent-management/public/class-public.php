@@ -11,6 +11,8 @@ class PPTM_Public {
         add_action('wp_ajax_nopriv_pptm_search_talents', array(__CLASS__, 'ajax_search_talents'));
         add_filter('single_template', array(__CLASS__, 'talent_single_template'));
         add_filter('archive_template', array(__CLASS__, 'talent_archive_template'));
+        add_filter('single_template', array(__CLASS__, 'article_single_template'));
+        add_filter('archive_template', array(__CLASS__, 'article_archive_template'));
     }
 
     public static function ajax_search_talents() {
@@ -87,6 +89,30 @@ class PPTM_Public {
     public static function talent_archive_template($template) {
         if (is_post_type_archive('talent') || is_tax('talent_category') || is_tax('talent_skill')) {
             $custom_template = PPTM_PLUGIN_DIR . 'templates/archive-talent.php';
+            if (file_exists($custom_template)) {
+                return $custom_template;
+            }
+        }
+        return $template;
+    }
+
+    public static function article_single_template($template) {
+        if (is_singular() && class_exists('PPTM_Article_Post_Types') && PPTM_Article_Post_Types::is_article_type(get_post_type())) {
+            $custom_template = PPTM_PLUGIN_DIR . 'templates/single-article.php';
+            if (file_exists($custom_template)) {
+                return $custom_template;
+            }
+        }
+        return $template;
+    }
+
+    public static function article_archive_template($template) {
+        if (!class_exists('PPTM_Article_Post_Types')) {
+            return $template;
+        }
+        $post_type = get_query_var('post_type');
+        if (is_post_type_archive() && $post_type && PPTM_Article_Post_Types::is_article_type($post_type)) {
+            $custom_template = PPTM_PLUGIN_DIR . 'templates/archive-articles.php';
             if (file_exists($custom_template)) {
                 return $custom_template;
             }

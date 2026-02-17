@@ -9,7 +9,7 @@ class PPTM_SEO_Manager {
     public static function init() {
         add_action('wp_head', array(__CLASS__, 'output_meta_tags'), 1);
         add_action('wp_head', array(__CLASS__, 'output_schema_markup'), 2);
-        add_filter('wp_title', array(__CLASS__, 'optimize_title'), 10, 2);
+        add_filter('document_title_parts', array(__CLASS__, 'optimize_document_title'));
     }
 
     public static function output_meta_tags() {
@@ -216,8 +216,8 @@ class PPTM_SEO_Manager {
         $excerpt = get_the_excerpt($post);
 
         if (empty($excerpt)) {
-            $content = strip_tags($post->post_content);
-            $content = strip_shortcodes($content);
+            $content = strip_shortcodes($post->post_content);
+            $content = wp_strip_all_tags($content);
             $excerpt = wp_trim_words($content, 30, '...');
         }
 
@@ -236,11 +236,10 @@ class PPTM_SEO_Manager {
         return '';
     }
 
-    public static function optimize_title($title, $sep = '|') {
+    public static function optimize_document_title($title_parts) {
         if (is_singular(array('talent', 'article_press_release', 'article_industry_insight', 'article_thought_leadership', 'article_company_news', 'article_case_study'))) {
-            $site_name = get_bloginfo('name');
-            $title = get_the_title() . ' ' . $sep . ' ' . $site_name;
+            $title_parts['title'] = get_the_title();
         }
-        return $title;
+        return $title_parts;
     }
 }

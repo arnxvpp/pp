@@ -5,6 +5,10 @@
 (function($) {
     'use strict';
 
+    if (typeof pptmData === 'undefined') {
+        return;
+    }
+
     $(document).ready(function() {
 
         // AJAX Talent Search

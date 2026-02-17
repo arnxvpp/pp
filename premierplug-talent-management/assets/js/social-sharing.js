@@ -1,6 +1,10 @@
 (function($) {
     'use strict';
 
+    if (typeof pptmSharing === 'undefined') {
+        return;
+    }
+
     $(document).ready(function() {
         $('.pptm-share-btn').on('click', function(e) {
             var $btn = $(this);

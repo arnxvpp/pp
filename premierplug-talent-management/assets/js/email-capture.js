@@ -1,6 +1,10 @@
 (function($) {
     'use strict';
 
+    if (typeof pptmEmailCapture === 'undefined') {
+        return;
+    }
+
     var popup = {
         el: null,
         shown: false,

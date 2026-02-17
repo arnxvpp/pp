@@ -109,7 +109,7 @@ class PPTM_Article_Shortcodes {
                             <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                         </h3>
                         <div class="pptm-article-meta">
-                            <span class="pptm-article-date"><?php echo get_the_date(); ?></span>
+                            <span class="pptm-article-date"><?php echo esc_html(get_the_date()); ?></span>
                         </div>
                         <div class="pptm-article-excerpt">
                             <?php the_excerpt(); ?>
@@ -216,7 +216,7 @@ class PPTM_Article_Shortcodes {
                     <span class="pptm-article-type">
                         <?php echo esc_html(PPTM_Article_Post_Types::get_type_label($post->post_type)); ?>
                     </span>
-                    <span class="pptm-article-date"><?php echo get_the_date('', $post); ?></span>
+                    <span class="pptm-article-date"><?php echo esc_html(get_the_date('', $post)); ?></span>
                 </div>
                 <h3 class="pptm-article-card-title">
                     <a href="<?php echo esc_url(get_permalink($post)); ?>">

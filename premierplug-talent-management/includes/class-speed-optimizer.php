@@ -124,6 +124,15 @@ class PPTM_Speed_Optimizer {
         return $attr;
     }
 
+    private static function get_wp_filesystem() {
+        global $wp_filesystem;
+        if (!$wp_filesystem) {
+            require_once ABSPATH . 'wp-admin/includes/file.php';
+            WP_Filesystem();
+        }
+        return $wp_filesystem;
+    }
+
     public static function add_browser_caching() {
         $cache_enabled = get_option('pptm_browser_caching', 'no');
 
@@ -132,12 +141,13 @@ class PPTM_Speed_Optimizer {
         }
 
         $htaccess_file = ABSPATH . '.htaccess';
+        $wp_filesystem = self::get_wp_filesystem();
 
-        if (!file_exists($htaccess_file) || !is_writable($htaccess_file)) {
+        if (!$wp_filesystem || !$wp_filesystem->exists($htaccess_file) || !$wp_filesystem->is_writable($htaccess_file)) {
             return;
         }
 
-        $htaccess_content = file_get_contents($htaccess_file);
+        $htaccess_content = $wp_filesystem->get_contents($htaccess_file);
 
         if (strpos($htaccess_content, '# BEGIN PremierPlug Cache') !== false) {
             return;
@@ -173,21 +183,22 @@ class PPTM_Speed_Optimizer {
 
         $new_content = $cache_rules . $htaccess_content;
 
-        file_put_contents($htaccess_file, $new_content);
+        $wp_filesystem->put_contents($htaccess_file, $new_content, FS_CHMOD_FILE);
     }
 
     public static function remove_browser_caching() {
         $htaccess_file = ABSPATH . '.htaccess';
+        $wp_filesystem = self::get_wp_filesystem();
 
-        if (!file_exists($htaccess_file) || !is_writable($htaccess_file)) {
+        if (!$wp_filesystem || !$wp_filesystem->exists($htaccess_file) || !$wp_filesystem->is_writable($htaccess_file)) {
             return;
         }
 
-        $htaccess_content = file_get_contents($htaccess_file);
+        $htaccess_content = $wp_filesystem->get_contents($htaccess_file);
 
         $htaccess_content = preg_replace('/# BEGIN PremierPlug Cache.*?# END PremierPlug Cache\n\n/s', '', $htaccess_content);
 
-        file_put_contents($htaccess_file, $htaccess_content);
+        $wp_filesystem->put_contents($htaccess_file, $htaccess_content, FS_CHMOD_FILE);
     }
 
     public static function minify_html($html) {

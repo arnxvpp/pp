@@ -33,7 +33,7 @@
                 return;
             }
 
-            $('.pptm-tab-btn').removeClass('active');
+            $button.closest('.pptm-article-tabs').find('.pptm-tab-btn').removeClass('active');
             $button.addClass('active');
 
             PPTM_Articles.loadArticles(talentId, articleType);
@@ -47,7 +47,7 @@
             $loading.show();
 
             $.ajax({
-                url: pptm_ajax.ajax_url || (window.ajaxurl || '/wp-admin/admin-ajax.php'),
+                url: (typeof pptm_ajax !== 'undefined' && pptm_ajax.ajax_url) ? pptm_ajax.ajax_url : '/wp-admin/admin-ajax.php',
                 type: 'POST',
                 data: {
                     action: 'pptm_load_talent_articles',
@@ -84,7 +84,11 @@
 
         initSmoothScroll: function() {
             $('a[href^="#"]').on('click', function(e) {
-                var target = $(this.getAttribute('href'));
+                var href = this.getAttribute('href');
+                if (!href || href === '#') {
+                    return;
+                }
+                var target = $(href);
 
                 if (target.length) {
                     e.preventDefault();
